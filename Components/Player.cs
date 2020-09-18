@@ -10,7 +10,7 @@ namespace OpenJam2020
     {
         private const float gravity = 0.1f;
 
-        Vector2 Velocity;
+        public Vector2 Velocity;
         Mover mover;
 
         public override void OnAddedToEntity()
@@ -21,7 +21,7 @@ namespace OpenJam2020
             mover = Entity.AddComponent(new Mover());
 
             Transform.Position = new Vector2(0, 111);
-            Velocity = new Vector2(3, 0);
+            Velocity = new Vector2(10, 0);
         }
 
         public void Update()
@@ -29,8 +29,15 @@ namespace OpenJam2020
             Velocity.Y += gravity;
             if (mover.Move(Velocity, out var collisionResult))
             {
-                Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
-                Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+                WorldObject other = collisionResult.Collider.Entity.GetComponent<WorldObject>();
+                if (other != null)
+                    Velocity = other.Collision(this, collisionResult.Normal);
+                Ground ground = collisionResult.Collider.Entity.GetComponent<Ground>();
+                if (ground != null)
+                {
+                    Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
+                    Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+                }
             }
         }
     }
