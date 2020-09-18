@@ -6,7 +6,10 @@ public class BasicScene : Scene
     public override void Initialize()
     {
         base.Initialize();
+        
         CreateEntity("ground").AddComponent<Ground>();
         CreateEntity("player").AddComponent<Player>();
+
+        Camera.Entity.AddComponent<CameraScroll>();
     }
 }
