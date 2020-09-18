@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29519.87
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenJam2020", "OpenJam2020.csproj", "{66644CCB-B5C5-4D79-A6D3-8ADF6CE0B1CA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nez", "..\Nez\Nez.Portable\Nez.csproj", "{1E711A37-8767-4FF0-9D1B-088A9E3A5C49}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nez.ImGui", "..\Nez\Nez.ImGui\Nez.ImGui.csproj", "{700C2CAE-A02E-42EB-9F4A-88948841D4E8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66644CCB-B5C5-4D79-A6D3-8ADF6CE0B1CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66644CCB-B5C5-4D79-A6D3-8ADF6CE0B1CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66644CCB-B5C5-4D79-A6D3-8ADF6CE0B1CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66644CCB-B5C5-4D79-A6D3-8ADF6CE0B1CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E711A37-8767-4FF0-9D1B-088A9E3A5C49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E711A37-8767-4FF0-9D1B-088A9E3A5C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E711A37-8767-4FF0-9D1B-088A9E3A5C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E711A37-8767-4FF0-9D1B-088A9E3A5C49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{700C2CAE-A02E-42EB-9F4A-88948841D4E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{700C2CAE-A02E-42EB-9F4A-88948841D4E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{700C2CAE-A02E-42EB-9F4A-88948841D4E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{700C2CAE-A02E-42EB-9F4A-88948841D4E8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {47C5DDB4-CDD5-4285-88EE-5861163606FA}
+	EndGlobalSection
+EndGlobal
