@@ -10,6 +10,7 @@ public class Ground : Component
     public override void OnAddedToEntity()
     {
         base.OnAddedToEntity();
+
         Entity.AddComponent(new BoxCollider(DESIGN_WIDTH, GROUND_HEIGHT));
         Transform.Position = new Vector2(DESIGN_WIDTH / 2, DESIGN_HEIGHT - GROUND_HEIGHT / 2);
 
@@ -21,7 +22,7 @@ public class Ground : Component
     {
         var texture = Entity.Scene.Content.Load<Texture2D>(textureName);
         var renderer = Entity.AddComponent(new TiledSpriteRenderer(texture));
-        renderer.Width = DESIGN_WIDTH;
+        renderer.Width = DESIGN_WIDTH * 10; // Take a random length for the level.
         renderer.OriginNormalized = new Vector2(.5f, .5f);
     }
 }
