@@ -26,6 +26,10 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         // Don't actually add the renderer since we will manually call it later
         _screenSpaceRenderer = new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer);
         _screenSpaceRenderer.ShouldDebugRender = false;
+
+        SetDesignResolution(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT, SceneResolutionPolicy.BestFit);
+        Screen.SetSize(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT);
+
         FinalRenderDelegate = this;
 
         if (addExcludeRenderer)
@@ -118,6 +122,9 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     public override void Update()
     {
         if (Input.GamePads.Length > 0 && Input.GamePads[0].IsButtonPressed(Buttons.Start))
+            ToggleImGui();
+
+        if (Input.IsKeyPressed(Keys.Tab))
             ToggleImGui();
 
         base.Update();
