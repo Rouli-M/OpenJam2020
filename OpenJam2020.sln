@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenJam2020", "OpenJam2020.csproj", "{66644CCB-B5C5-4D79-A6D3-8ADF6CE0B1CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nez", "..\Nez\Nez.Portable\Nez.csproj", "{1E711A37-8767-4FF0-9D1B-088A9E3A5C49}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nez.ImGui", "..\Nez\Nez.ImGui\Nez.ImGui.csproj", "{700C2CAE-A02E-42EB-9F4A-88948841D4E8}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
