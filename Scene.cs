@@ -34,8 +34,6 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         // Create our canvas and put it on the screen space render layer
         Canvas = CreateEntity("ui").AddComponent(new UICanvas());
         Canvas.IsFullScreen = true;
-        ClearColor = Color.Transparent;
-        LetterboxColor = new Color(0, 0, 0, 200);
         Canvas.RenderLayer = ScreenSpaceRenderLayer;
 
         SetupSceneSelector();
