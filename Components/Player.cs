@@ -53,6 +53,7 @@ public class Player : Component, IUpdatable
         AddSingleTextureAnimation("canon");
         AddSingleTextureAnimation("3-rise");
         AddSingleTextureAnimation("3-fall");
+        AddSingleTextureAnimation("3-top");
         AddSingleTextureAnimation("3-slide");
         AddSingleTextureAnimation("3-charge_throw");
         AddSingleTextureAnimation("2-fly");
