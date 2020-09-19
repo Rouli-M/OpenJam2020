@@ -9,7 +9,7 @@ public class Sliding_3State : State<Player>
     {
         _context.PhysicalUpdate();
 
-        if (_context.isThrowInputGiven())
+        if (_context.IsThrowInputGiven())
         {
             _context.fsm.ChangeState<Throwing_3State>();
             _context.animator.Play("3-charge_throw");
