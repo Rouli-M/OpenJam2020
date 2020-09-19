@@ -19,7 +19,6 @@ public class Player : Component, IUpdatable
 
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
-    SpriteAtlas atlas;
 
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
@@ -48,7 +47,6 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_3State());
         fsm.AddState(new Throwing_2State());
 
-        atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
         animator = Entity.AddComponent(new SpriteAnimator());
         AddSingleTextureAnimation("canon");
         AddSingleTextureAnimation("3-rise");
@@ -134,13 +132,13 @@ public class Player : Component, IUpdatable
 
     private void AddAtlasAnimation(string name)
     {
-        var animation = atlas.GetAnimation(name);
+        var animation = Game.Atlas.GetAnimation(name);
         animator.AddAnimation(name, animation);
     }
 
     private void AddSingleTextureAnimation(string name)
     {
-        var sprite = atlas.GetSprite(name);
+        var sprite = Game.Atlas.GetSprite(name);
         animator.AddAnimation(name, new[] { sprite });
     }
 
