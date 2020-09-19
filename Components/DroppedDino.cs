@@ -8,7 +8,7 @@ using System.Text;
 
 namespace OpenJam2020.Components
 {
-    public class DroppedDino:Component, IUpdatable
+    public class DroppedDino : Component
     {
         int DinoID;
 
@@ -21,19 +21,14 @@ namespace OpenJam2020.Components
         {
             base.OnAddedToEntity();
 
+            if (DinoID == 0) AddSingleTextureAnimation("root/canon_empty");
             if (DinoID == 3) AddSingleTextureAnimation("root/3-throw");
             if (DinoID == 2) AddSingleTextureAnimation("root/2-throw");
-            Transform.Position = Entity.Scene.FindComponentOfType<Player>().Transform.Position;
         }
 
-        public void Update()
-        {
-           // throw new NotImplementedException();
-        }
         private void AddSingleTextureAnimation(string name)
         {
             Texture2D texture = Entity.Scene.Content.Load<Texture2D>(name);
-
             Entity.AddComponent(new SpriteRenderer(texture));
         }
     }
