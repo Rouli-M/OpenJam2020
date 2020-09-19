@@ -12,6 +12,7 @@ using Nez.Textures;
 public class Player : Component, IUpdatable
 {
     private const float gravity = 360f;
+    private const float groundFriction = 300f;
 
     public Vector2 Velocity;
     Mover mover;
@@ -44,8 +45,10 @@ public class Player : Component, IUpdatable
         animator = Entity.AddComponent(new SpriteAnimator());
         addSingleTextureAnimation("3-slide");
         addSingleTextureAnimation("3-rise");
+        addSingleTextureAnimation("3-fall");
         addSingleTextureAnimation("3-charge_throw");
         addSingleTextureAnimation("2-fly");
+        addSingleTextureAnimation("2-slide");
         addSingleTextureAnimation("2-charge_throw");
         addSingleTextureAnimation("1-fly");
     }
@@ -68,6 +71,13 @@ public class Player : Component, IUpdatable
             {
                 Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
                 Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+                Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
+                if (fsm.CurrentState is Flying_1State state1)
+                    state1.slide();
+                if (fsm.CurrentState is Flying_2State state2)
+                    state2.slide();
+                if (fsm.CurrentState is Flying_3State state3)
+                    state3.slide();
             }
         }
     }

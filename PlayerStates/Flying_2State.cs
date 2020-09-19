@@ -15,4 +15,9 @@ public class Flying_2State : State<Player>
             _context.animator.Play("2-charge_throw");
         }
     }
+    public void slide()
+    {
+        _context.fsm.ChangeState<Sliding_2State>();
+        _context.animator.Play("2-slide");
+    }
 }
