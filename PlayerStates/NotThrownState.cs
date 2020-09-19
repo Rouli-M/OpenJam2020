@@ -11,6 +11,12 @@ public class NotThrownState : State<Player>
     float rotationSpeed = 2;
     bool clockwise = false;
 
+    public override void Begin()
+    {
+        base.Begin();
+        Game.State = GameState.Waiting;
+    }
+
     public override void Update(float deltaTime)
     {
         if (_context.IsThrowInputGiven())

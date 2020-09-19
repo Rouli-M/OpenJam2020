@@ -9,7 +9,6 @@ using Nez.Tweens;
 using Nez.ImGuiTools;
 using Console = Nez.Console;
 using Microsoft.Xna.Framework.Input;
-using Nez.BitmapFonts;
 
 public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 {
@@ -20,15 +19,12 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     List<Button> _sceneButtons = new List<Button>();
     ScreenSpaceRenderer _screenSpaceRenderer;
     static ImGuiManager _imGuiManager;
-    NezSpriteFont font;
 
     public Scene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
     {
         // Don't actually add the renderer since we will manually call it later
         _screenSpaceRenderer = new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer);
         _screenSpaceRenderer.ShouldDebugRender = false;
-
-        font = new NezSpriteFont(Content.Load<SpriteFont>("Font"));
 
         SetDesignResolution(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT, SceneResolutionPolicy.BestFit);
         Screen.SetSize(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT);
@@ -40,6 +36,7 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 
         // Create our canvas and put it on the screen space render layer
         Canvas = CreateEntity("ui").AddComponent(new UICanvas());
+        Canvas.AddComponent<Overlay>();
         Canvas.IsFullScreen = true;
         Canvas.RenderLayer = ScreenSpaceRenderLayer;
 
@@ -174,13 +171,6 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         Graphics.Instance.Batcher.Begin(BlendState.Opaque, samplerState, DepthStencilState.None, RasterizerState.CullNone, null);
         Graphics.Instance.Batcher.Draw(source, finalRenderDestinationRect, Color.White);
         Graphics.Instance.Batcher.End();
-
-        if (Game.IsPaused)
-        {
-            Graphics.Instance.Batcher.Begin();
-            Graphics.Instance.Batcher.DrawString(font, "Pause", new Vector2(550, 300), Color.Red);
-            Graphics.Instance.Batcher.End();
-        }
 
         _screenSpaceRenderer.Render(_scene);
     }

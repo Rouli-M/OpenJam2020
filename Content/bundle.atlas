@@ -4,13 +4,13 @@ base
 canon_shoot
 	0,953,1286,213
 	0.5,0.5
-menu_pause
+gameover_overlay
 	0,1167,1280,720
 	0.5,0.5
-menu1
+pause_overlay
 	1394,0,1280,720
 	0.5,0.5
-menu2
+waiting_overlay
 	1394,721,1280,720
 	0.5,0.5
 canon

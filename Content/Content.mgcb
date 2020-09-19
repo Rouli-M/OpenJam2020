@@ -22,13 +22,6 @@
 /processorParam:Quality=Best
 /build:charge_up.wav
 
-#begin Font.spritefont
-/importer:FontDescriptionImporter
-/processor:FontDescriptionProcessor
-/processorParam:PremultiplyAlpha=True
-/processorParam:TextureFormat=Compressed
-/build:Font.spritefont
-
 #begin root/bg1.png
 /importer:TextureImporter
 /processor:TextureProcessor

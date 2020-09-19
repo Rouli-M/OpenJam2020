@@ -20,7 +20,7 @@ public class Ground : Component
 
         Transform.Position = new Vector2(0, 0);
 
-        Entity.AddTiledTexture("root/ground", 0.1f, groundWidth, GROUND_HEIGHT * 100);
-        Entity.AddTiledTexture("root/ground_top", 0, groundWidth);
+        Entity.AddTiledTexture("root/ground", .2f, groundWidth, GROUND_HEIGHT * 100);
+        Entity.AddTiledTexture("root/ground_top", .1f, groundWidth);
     }
 }
