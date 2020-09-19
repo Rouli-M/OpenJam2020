@@ -40,6 +40,8 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         Canvas.IsFullScreen = true;
         Canvas.RenderLayer = ScreenSpaceRenderLayer;
 
+        Game.PauseOnFocusLost = false;
+
         SetupSceneSelector();
     }
 
@@ -126,6 +128,9 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 
         if (Input.IsKeyPressed(Keys.Tab))
             ToggleImGui();
+
+        if (!Game.Instance.IsActive)
+            Game.IsPaused = true;
 
         if (Input.IsKeyPressed(Keys.P))
         {
