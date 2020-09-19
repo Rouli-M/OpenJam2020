@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Console;
+using System;
 
 namespace OpenJam2020
 {
@@ -13,8 +14,10 @@ namespace OpenJam2020
             Window.Title = "Game";
             Window.AllowUserResizing = true;
             DebugConsole.ConsoleKey = Keys.F3;
+            TargetElapsedTime = TimeSpan.FromTicks(10000000 / 60);
+            IsFixedTimeStep = true;
             Screen.SynchronizeWithVerticalRetrace = true;
-            Core.DefaultSamplerState = new SamplerState { Filter = TextureFilter.Linear };
+            DefaultSamplerState = new SamplerState { Filter = TextureFilter.Linear };
             Scene = new BasicScene();
         }
     }
