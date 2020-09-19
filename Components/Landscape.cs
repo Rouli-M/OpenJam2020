@@ -23,7 +23,11 @@ public class Landscape : Component
 
         var sky = Entity.Scene.CreateEntity("sky");
         sky.Parent = Transform;
-        sky.AddTiledTexture("textures/sky", Constants.DESIGN_WIDTH * 100);
+        sky.Transform.Position = new Vector2(0, 300);
+
+        var renderer = sky.AddTiledTexture("textures/sky", Constants.DESIGN_WIDTH * 100, Constants.DESIGN_HEIGHT * 50);
+        renderer.OriginNormalized = new Vector2(.5f, 1);
+        renderer.LayerDepth = 10;
 
         layers = new[] { new Layer(sky.Transform, .8f) };
     }

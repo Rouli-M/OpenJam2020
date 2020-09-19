@@ -31,8 +31,7 @@ public class Player : Component, IUpdatable
         var texture = Entity.Scene.Content.Load<Texture2D>("player/3-rise");
         Entity.AddComponent(new SpriteRenderer(texture));
 
-
-        Transform.Position = new Vector2(0, -130);
+        Transform.Position = new Vector2(0, -80);
         Velocity = new Vector2(0, 0);
     }
 
