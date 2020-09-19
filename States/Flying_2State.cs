@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Nez.AI.FSM;
+﻿using Nez.AI.FSM;
 
 public class Flying_2State : State<Player>
 {

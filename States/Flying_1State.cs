@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Nez.AI.FSM;
+﻿using Nez.AI.FSM;
 
 public class Flying_1State : State<Player>
 {
@@ -10,6 +7,7 @@ public class Flying_1State : State<Player>
         base.Begin();
         _context.animator.Play("1-fly");
     }
+    
     public override void Update(float deltaTime)
     {
         _context.PhysicalUpdate();

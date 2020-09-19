@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Nez.AI.FSM;
 
 public class Flying_3State : State<Player>

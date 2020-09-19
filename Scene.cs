@@ -100,15 +100,9 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
                     var button = _table.Add(new TextButton(sampleAttr.ButtonName, buttonStyle)).SetFillX()
                         .SetMinHeight(30).GetElement<TextButton>();
 
-                    _sceneButtons.Add(button);
-                    button.OnClicked += butt =>
-                    {
-                        // Stop all tweens in case any demo scene started some up
-                        TweenManager.StopAllTweens();
-                        Core.GetGlobalManager<ImGuiManager>()?.SetEnabled(false);
-                        Core.StartSceneTransition(new FadeTransition(() => Activator.CreateInstance(type) as Nez.Scene));
-                    };
+                    button.OnClicked += _ => Game.Restart();
 
+                    _sceneButtons.Add(button);
                     _table.Row().SetPadTop(10);
                 }
             }

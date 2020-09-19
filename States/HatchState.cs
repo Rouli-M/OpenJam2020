@@ -1,4 +1,6 @@
-﻿using Nez.AI.FSM;
+﻿using Microsoft.Xna.Framework.Input;
+using Nez;
+using Nez.AI.FSM;
 
 public class HatchState : State<Player>
 {
@@ -11,5 +13,8 @@ public class HatchState : State<Player>
         _context.success.Play();
     }
 
-    public override void Update(float deltaTime) { }
+    public override void Update(float deltaTime) { 
+        if (Input.IsKeyPressed(Keys.R))
+            Game.Restart();
+    }
 }

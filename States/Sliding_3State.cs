@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Nez.AI.FSM;
 
 public class Sliding_3State : State<Player>
@@ -16,10 +14,5 @@ public class Sliding_3State : State<Player>
 
         if (_context.IsThrowInputGiven())
             _context.fsm.ChangeState<Throwing_3State>();
-    }
-
-    internal void fly()
-    {
-        throw new NotImplementedException();
     }
 }
