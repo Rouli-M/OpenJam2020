@@ -13,6 +13,10 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin bundle
+/copy:bundle.png
+/copy:bundle.png
+
 #begin champi/champi1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -300,4 +304,3 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sky.png
-
