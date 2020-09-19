@@ -1,7 +1,7 @@
 base
 	0,0,1393,952
 	0.5,0.5
-canon_shoot
+canon_shoot2
 	0,953,1286,213
 	0.5,0.5
 menu_pause
@@ -16,10 +16,10 @@ menu2
 canon
 	2675,0,914,213
 	0.5,0.5
-canon_empty
+canon_loaded
 	1281,1442,914,213
 	0.5,0.5
-canon_loaded
+canon_shoot1
 	2675,214,914,213
 	0.5,0.5
 arbre2
@@ -128,6 +128,9 @@ sky
 1-win
 	7
 	16,17,18,19
+canon_shoot
+	7
+	7,1
 champi
 	7
 	32,33,34,35
