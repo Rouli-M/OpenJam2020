@@ -7,20 +7,29 @@ class WorldGenerator : Component, IUpdatable
     public override void OnAddedToEntity()
     {
         base.OnAddedToEntity();
-        generate(500);
     }
 
     public void generate(float xPosition)
     {
-        if (Random.NextInt(128) == 0)
+        if (Random.NextInt(64) == 0)
         {
-            int type = Random.NextInt(0);
+            int type = Random.NextInt(2);
+            int yPosition;
             switch (type) {
                 case 0:
-                    int yPosition = -62;
+                    yPosition = -62;
                     if (checkPosition(new Vector2(xPosition, yPosition)))
                     {
                         var newComponent = Entity.Scene.CreateEntity("bumper").AddComponent<Bumper>();
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+                case 1:
+                    yPosition = 455 - Random.NextInt(1000);
+                    if (checkPosition(new Vector2(xPosition, yPosition - 517)))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("tall_bumper").AddComponent<TallBumper>();
                         newComponent.Transform.Position = new Vector2(xPosition, yPosition);
                         newComponent.Transform.Parent = this.Transform;
                     }
