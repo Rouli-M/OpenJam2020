@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 
-public static class EntityExtensions
+public static class Extensions
 {
     public static TiledSpriteRenderer AddTiledTexture(this Entity entity, string textureName, float depth, int width)
     {

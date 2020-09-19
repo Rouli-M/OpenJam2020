@@ -19,11 +19,8 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     Table _table;
     List<Button> _sceneButtons = new List<Button>();
     ScreenSpaceRenderer _screenSpaceRenderer;
-
     static ImGuiManager _imGuiManager;
-
     NezSpriteFont font;
-    bool isPaused;
 
     public Scene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
     {
@@ -135,10 +132,10 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 
         if (Input.IsKeyPressed(Keys.P))
         {
-            isPaused = !isPaused;
-            Time.TimeScale = isPaused ? 0 : 1;
+            Game.IsPaused = !Game.IsPaused;
+            Time.TimeScale = Game.IsPaused ? 0 : 1;
         }
-        else if (isPaused)
+        else if (Game.IsPaused)
             Time.TimeScale = 0;
 
         base.Update();
@@ -178,7 +175,7 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         Graphics.Instance.Batcher.Draw(source, finalRenderDestinationRect, Color.White);
         Graphics.Instance.Batcher.End();
 
-        if (isPaused)
+        if (Game.IsPaused)
         {
             Graphics.Instance.Batcher.Begin();
             Graphics.Instance.Batcher.DrawString(font, "Pause", new Vector2(550, 300), Color.Red);

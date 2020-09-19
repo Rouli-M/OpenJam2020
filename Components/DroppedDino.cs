@@ -21,15 +21,9 @@ namespace OpenJam2020.Components
         {
             base.OnAddedToEntity();
 
-            if (DinoID == 0) AddSingleTextureAnimation("root/canon_empty");
-            if (DinoID == 3) AddSingleTextureAnimation("root/3-throw");
-            if (DinoID == 2) AddSingleTextureAnimation("root/2-throw");
-        }
-
-        private void AddSingleTextureAnimation(string name)
-        {
-            Texture2D texture = Entity.Scene.Content.Load<Texture2D>(name);
-            Entity.AddComponent(new SpriteRenderer(texture));
+            if (DinoID == 0) Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("canon_empty")));
+            if (DinoID == 3) Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("3-throw")));
+            if (DinoID == 2) Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("2-throw")));
         }
     }
 }
