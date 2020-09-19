@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
-using Nez.Textures;
 
 public class Player : Component, IUpdatable
 {
@@ -47,7 +43,8 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_3State());
         fsm.AddState(new Throwing_2State());
 
-        animator = Entity.AddComponent(new SpriteAnimator());
+        animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
+
         AddSingleTextureAnimation("canon");
         AddSingleTextureAnimation("3-rise");
         AddSingleTextureAnimation("3-fall");
@@ -66,6 +63,7 @@ public class Player : Component, IUpdatable
     {
         fsm.Update(Time.DeltaTime);
     }
+
     public void PhysicalUpdate()
     {
         Velocity.Y += gravity * Time.DeltaTime;

@@ -10,20 +10,25 @@ namespace OpenJam2020.Components
 {
     public class DroppedDino : Component
     {
-        int DinoID;
+        int dinoId;
 
-        public DroppedDino(int DinoID)
+        public DroppedDino(int dinoId)
         {
-            this.DinoID = DinoID;
+            this.dinoId = dinoId;
         }
 
         public override void OnAddedToEntity()
         {
             base.OnAddedToEntity();
 
-            if (DinoID == 0) Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("canon_empty")));
-            if (DinoID == 3) Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("3-throw")));
-            if (DinoID == 2) Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("2-throw")));
+            if (dinoId == 0) AddRenderer("canon_empty");
+            if (dinoId == 3) AddRenderer("3-throw");
+            if (dinoId == 2) AddRenderer("2-throw");
+        }
+
+        private void AddRenderer(string spriteName)
+        {
+            Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite(spriteName)) { LayerDepth = .5f });
         }
     }
 }

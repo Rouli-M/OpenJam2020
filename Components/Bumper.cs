@@ -16,10 +16,9 @@ class Bumper : WorldObject, ITriggerListener
         collider.IsTrigger = true;
 
         SpriteAtlas atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
-        animator = new SpriteAnimator();
+        animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
         animator.AddAnimation("idle", new[] { atlas.GetSprite("champi1") });
         animator.AddAnimation("bump", atlas.GetAnimation("champi"));
-        Entity.AddComponent(animator);
 
         base.OnAddedToEntity();
     }
@@ -31,8 +30,5 @@ class Bumper : WorldObject, ITriggerListener
         animator.Play("bump", SpriteAnimator.LoopMode.Once);
     }
 
-    public void OnTriggerExit(Collider other, Collider local)
-    {
-
-    }
+    public void OnTriggerExit(Collider other, Collider local) { }
 }
