@@ -5,40 +5,21 @@ using Nez;
 using Nez.Sprites;
 using System;
 
-class TallBumper : WorldObject, ITriggerListener
+class TallBumper : Bumper
 {
-    private const float minBumpVelocity = 500f;
-    private readonly Vector2 bumpDirection = new Vector2(0, -1);
-    private SpriteAnimator animator;
-
-    private SoundEffect bounce_sound;
-
     public override void OnAddedToEntity()
     {
-        var collider = Entity.AddComponent(new BoxCollider(-110, -517, 220, 80));
-        collider.IsTrigger = true;
+        base.OnAddedToEntity();
+        Entity.GetComponent<BoxCollider>().SetLocalOffset(new Vector2(0, -491));
+        Entity.GetComponent<BoxCollider>().SetSize(220, 40);
 
-        SpriteAtlas atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
+        Entity.RemoveComponent<SpriteAnimator>();
         animator = new SpriteAnimator();
-        animator.AddAnimation("idle", new[] { atlas.GetSprite("tall_champi1") });
-        animator.AddAnimation("bump", atlas.GetAnimation("tall_champi"));
+        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("tall_champi1") });
+        animator.AddAnimation("bump", Game.Atlas.GetAnimation("tall_champi"));
         Entity.AddComponent(animator);
 
         bounce_sound = Core.Content.Load<SoundEffect>("bounce");
-
-        base.OnAddedToEntity();
-    }
-
-    public void OnTriggerEnter(Collider other, Collider local)
-    {
-        var player = other.GetComponent<Player>();
-        player.Velocity += MathF.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
-        animator.Play("bump", SpriteAnimator.LoopMode.Once);
-        bounce_sound.Play();
-    }
-
-    public void OnTriggerExit(Collider other, Collider local)
-    {
 
     }
 }

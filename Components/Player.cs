@@ -128,21 +128,21 @@ public class Player : Component, IUpdatable
                 else
                     Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity) * Constants.speedMultiplier;
 
-                if (fsm.CurrentState is Flying_1State state1)
+                if (fsm.CurrentState is Flying_1State)
                     fsm.ChangeState<Sliding_1State>();
-                if (fsm.CurrentState is Flying_2State state2)
+                if (fsm.CurrentState is Flying_2State)
                     fsm.ChangeState<Sliding_2State>();
-                if (fsm.CurrentState is Flying_3State state3)
+                if (fsm.CurrentState is Flying_3State)
                     fsm.ChangeState<Sliding_3State>();
             }
             else
             {
 
-                if (fsm.CurrentState is Sliding_1State state1)
+                if (fsm.CurrentState is Sliding_1State)
                     fsm.ChangeState<Flying_1State>();
-                if (fsm.CurrentState is Sliding_2State state2)
+                if (fsm.CurrentState is Sliding_2State)
                     fsm.ChangeState<Flying_2State>();
-                if (fsm.CurrentState is Sliding_3State state3)
+                if (fsm.CurrentState is Sliding_3State)
                     fsm.ChangeState<Flying_3State>();
             }
         }

@@ -7,20 +7,19 @@ using System;
 
 class Bumper : WorldObject, ITriggerListener
 {
-    private const float minBumpVelocity = 500f;
-    private readonly Vector2 bumpDirection = new Vector2(0, -1);
-    private SpriteAnimator animator;
-    private SoundEffect bounce_sound;
+    protected const float minBumpVelocity = 500f;
+    protected readonly Vector2 bumpDirection = new Vector2(0, -1);
+    protected SpriteAnimator animator;
+    protected SoundEffect bounce_sound;
 
     public override void OnAddedToEntity()
     {
         var collider = Entity.AddComponent(new BoxCollider(-110, -10, 220, 80));
         collider.IsTrigger = true;
 
-        SpriteAtlas atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
         animator = new SpriteAnimator();
-        animator.AddAnimation("idle", new[] { atlas.GetSprite("champi1") });
-        animator.AddAnimation("bump", atlas.GetAnimation("champi"));
+        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("champi1") });
+        animator.AddAnimation("bump", Game.Atlas.GetAnimation("champi"));
         Entity.AddComponent(animator);
 
         bounce_sound = Core.Content.Load<SoundEffect>("bounce");
