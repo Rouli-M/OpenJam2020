@@ -8,5 +8,11 @@ public class Flying_3State : State<Player>
     public override void Update(float deltaTime)
     {
         _context.PhysicalUpdate();
+
+        if (_context.isThrowInputGiven())
+        {
+            _context.fsm.ChangeState<Throwing_3State>();
+            _context.animator.Play("3-charge_throw");
+        }
     }
 }

@@ -17,7 +17,7 @@ public class Player : Component, IUpdatable
     Mover mover;
     
     public StateMachine<Player> fsm;
-    SpriteAnimator animator;
+    public SpriteAnimator animator;
 
     public override void OnAddedToEntity()
     {
@@ -42,7 +42,12 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_2State());
 
         animator = Entity.AddComponent(new SpriteAnimator());
+        addSingleTextureAnimation("3-slide");
         addSingleTextureAnimation("3-rise");
+        addSingleTextureAnimation("3-charge_throw");
+        addSingleTextureAnimation("2-fly");
+        addSingleTextureAnimation("2-charge_throw");
+        addSingleTextureAnimation("1-fly");
     }
 
     public void Update()
@@ -65,7 +70,7 @@ public class Player : Component, IUpdatable
             }
         }
     }
-    public void Throw(float angle, float velocity)
+    public void Throw(float velocity, float angle = (float) Math.PI / 4)
     {
         Velocity = velocity * new Vector2((float)Math.Cos(angle), -(float)Math.Sin(angle));
     }
@@ -74,5 +79,9 @@ public class Player : Component, IUpdatable
         var texture = Entity.Scene.Content.Load<Texture2D>("player/" + name);
         var sprite = new Sprite(texture);
         animator.AddAnimation(name, new[] { sprite });
+    }
+    public bool isThrowInputGiven()
+    {
+        return Keyboard.GetState().IsKeyDown(Keys.Space);
     }
 }

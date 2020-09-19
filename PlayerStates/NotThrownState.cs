@@ -8,10 +8,9 @@ public class NotThrownState : State<Player>
 {
     public override void Update(float deltaTime)
     {
-        if (Keyboard.GetState().IsKeyDown(Keys.Space))
+        if (_context.isThrowInputGiven())
         {
-            _context.Throw((float)Math.PI / 4, 10f);
-            _context.fsm.ChangeState<Flying_3State>();
+            _context.fsm.ChangeState<ThrowingState>();
         }
     }
 }

@@ -7,6 +7,11 @@ public class ThrowingState : State<Player>
 {
     public override void Update(float deltaTime)
     {
-
+        if (!_context.isThrowInputGiven())
+        {
+            _context.Throw(10f, (float)Math.PI / 4);
+            _context.fsm.ChangeState<Flying_3State>();
+            _context.animator.Play("3-rise");
+        }
     }
 }
