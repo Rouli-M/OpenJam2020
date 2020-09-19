@@ -13,7 +13,7 @@ public class Flying_3State : State<Player>
         if (_context.Velocity.Y < 0 && _context.animator.CurrentAnimationName != "3-rise")
             _context.animator.Play("3-rise");
 
-        if (_context.isThrowInputGiven())
+        if (_context.IsThrowInputGiven())
         {
             _context.fsm.ChangeState<Throwing_3State>();
             _context.animator.Play("3-charge_throw");

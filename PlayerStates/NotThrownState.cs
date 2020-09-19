@@ -8,7 +8,7 @@ public class NotThrownState : State<Player>
 {
     public override void Update(float deltaTime)
     {
-        if (_context.isThrowInputGiven())
+        if (_context.IsThrowInputGiven())
         {
             _context.fsm.ChangeState<ThrowingState>();
         }

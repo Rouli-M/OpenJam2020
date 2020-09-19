@@ -21,11 +21,15 @@ public class Player : Component, IUpdatable
     public SpriteAnimator animator;
     SpriteAtlas atlas;
 
+    public readonly Point Box3 = new Point(260, 260);
+    public readonly Point Box2 = new Point(200, 200);
+    public readonly Point Box1 = new Point(100, 100);
+
     public override void OnAddedToEntity()
     {
         base.OnAddedToEntity();
 
-        Entity.AddComponent(new BoxCollider(260, 260));
+        Entity.AddComponent(new BoxCollider(Box3.X, Box3.Y));
         mover = Entity.AddComponent(new Mover());
 
         Transform.Position = new Vector2(0, -80);
@@ -53,6 +57,7 @@ public class Player : Component, IUpdatable
         AddSingleTextureAnimation("2-slide");
         AddSingleTextureAnimation("2-charge_throw");
         AddSingleTextureAnimation("1-fly");
+        AddAtlasAnimation("1-slide");
     }
 
     public void Update()
@@ -71,9 +76,20 @@ public class Player : Component, IUpdatable
             Ground ground = collisionResult.Collider.Entity.GetComponent<Ground>();
             if (ground != null)
             {
+                // gestion collision
                 Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
                 Velocity = Vector2.Dot(tangent, Velocity) * tangent;
-                Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
+
+                // frottements
+                if (Velocity.Length() < groundFriction * Time.DeltaTime)
+                {
+                    Velocity = Vector2.Zero;
+                    if (fsm.CurrentState is Flying_1State)
+                        fsm.ChangeState<FallenState>();
+                }
+                else
+                    Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
+
                 if (fsm.CurrentState is Flying_1State state1)
                     state1.slide();
                 if (fsm.CurrentState is Flying_2State state2)
@@ -87,13 +103,18 @@ public class Player : Component, IUpdatable
     {
         Velocity = velocity * new Vector2((float)Math.Cos(angle), -(float)Math.Sin(angle));
     }
+    private void AddAtlasAnimation(string name)
+    {
+        var animation = atlas.GetAnimation(name);
+        animator.AddAnimation(name, animation);
+    }
     private void AddSingleTextureAnimation(string name)
     {
         var sprite = atlas.GetSprite(name);
         animator.AddAnimation(name, new[] { sprite });
     }
-    
-    public bool isThrowInputGiven()
+
+    public bool IsThrowInputGiven()
     {
         return Keyboard.GetState().IsKeyDown(Keys.Space);
     }

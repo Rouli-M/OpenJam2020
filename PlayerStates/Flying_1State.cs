@@ -12,5 +12,6 @@ public class Flying_1State : State<Player>
     public void slide()
     {
         _context.fsm.ChangeState<Sliding_1State>();
+        _context.animator.Play("1-slide");
     }
 }
