@@ -16,15 +16,7 @@ public class Ground : Component
         Entity.AddComponent(new BoxCollider(groundWidth, GROUND_HEIGHT));
         Transform.Position = new Vector2(DESIGN_WIDTH / 2, GROUND_HEIGHT / 2);
 
-        AddTiledTexture("textures/ground_top");
-        AddTiledTexture("textures/ground");
-    }
-
-    private void AddTiledTexture(string textureName)
-    {
-        var texture = Entity.Scene.Content.Load<Texture2D>(textureName);
-        var renderer = Entity.AddComponent(new TiledSpriteRenderer(texture));
-        renderer.Width = groundWidth;
-        renderer.OriginNormalized = new Vector2(.5f, .5f);
+        Entity.AddTiledTexture("textures/ground");
+        Entity.AddTiledTexture("textures/ground_top");
     }
 }

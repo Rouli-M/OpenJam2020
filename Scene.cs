@@ -127,6 +127,9 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         if (Input.IsKeyPressed(Keys.Tab))
             ToggleImGui();
 
+        if (Input.IsKeyPressed(Keys.P))
+            Time.TimeScale = Time.TimeScale == 1 ? 0 : 1;
+
         base.Update();
     }
 
