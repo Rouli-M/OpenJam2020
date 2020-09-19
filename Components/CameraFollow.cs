@@ -20,11 +20,17 @@ public class CameraFollow : Component, IUpdatable
 
     public void Update()
     {
-
         offset = player.Velocity;
+        int offset_length = 300;
+        if (player.fsm != null) if (player.fsm.CurrentState is NotThrownState || player.fsm.CurrentState is ThrowingState)
+            {
+                offset = new Vector2(50, -300);
+                offset_length = 140;
+            }
+
         if (offset.Length() > 5) offset.Normalize(); 
         else offset = Vector2.Zero;
-        offset *= -300; offset.X *= 2; if (player.Velocity.Length() < 1000) offset.X *= (player.Velocity.Length())/1000;
+        offset *= -offset_length; offset.X *= 2; if (player.Velocity.Length() < 1000) offset.X *= player.Velocity.Length()/1000;
         Vector2 newPosition = player.Transform.Position - offset * 0.5f - previous_offset * 0.5f;
 
         float length = player.Velocity.Length();
