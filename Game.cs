@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using System;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Console;
@@ -18,7 +19,6 @@ public class Game : Core
         Screen.SynchronizeWithVerticalRetrace = true;
         Core.DefaultSamplerState = new SamplerState { Filter = TextureFilter.Linear };
         Scene = new BasicScene();
-
         Atlas = Content.LoadSpriteAtlas("Content/bundle.atlas");
     
         TargetElapsedTime = TimeSpan.FromTicks(10000000 / 60);
