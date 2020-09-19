@@ -1,1 +1,1 @@
-.\SpriteAtlasPacker.exe -image:bundle.png -map:bundle.atlas -fps:7 .
+.\SpriteAtlasPacker.exe -image:bundle.png -map:bundle.atlas -fps:7 root/

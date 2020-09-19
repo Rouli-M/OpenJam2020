@@ -16,7 +16,7 @@
 #begin bundle.png
 /copy:bundle.png
 
-#begin champi/champi1.png
+#begin root/champi/champi1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -26,9 +26,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:champi/champi1.png
+/build:root/champi/champi1.png
 
-#begin champi/champi2.png
+#begin root/champi/champi2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -38,9 +38,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:champi/champi2.png
+/build:root/champi/champi2.png
 
-#begin champi/champi3.png
+#begin root/champi/champi3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -50,9 +50,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:champi/champi3.png
+/build:root/champi/champi3.png
 
-#begin champi/champi4.png
+#begin root/champi/champi4.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -62,9 +62,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:champi/champi4.png
+/build:root/champi/champi4.png
 
-#begin player/1-fly.png
+#begin root/1-fly.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -74,9 +74,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/1-fly.png
+/build:root/1-fly.png
 
-#begin player/1-slide/1-slide1.png
+#begin root/1-slide/1-slide1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -86,9 +86,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/1-slide/1-slide1.png
+/build:root/1-slide/1-slide1.png
 
-#begin player/1-slide/1-slide2.png
+#begin root/1-slide/1-slide2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -98,9 +98,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/1-slide/1-slide2.png
+/build:root/1-slide/1-slide2.png
 
-#begin player/1-slide/1-slide3.png
+#begin root/1-slide/1-slide3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -110,9 +110,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/1-slide/1-slide3.png
+/build:root/1-slide/1-slide3.png
 
-#begin player/2-charge_throw.png
+#begin root/2-charge_throw.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -122,9 +122,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/2-charge_throw.png
+/build:root/2-charge_throw.png
 
-#begin player/2-fly.png
+#begin root/2-fly.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -134,9 +134,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/2-fly.png
+/build:root/2-fly.png
 
-#begin player/2-slide.png
+#begin root/2-slide.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -146,9 +146,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/2-slide.png
+/build:root/2-slide.png
 
-#begin player/2-throw.png
+#begin root/2-throw.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -158,9 +158,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/2-throw.png
+/build:root/2-throw.png
 
-#begin player/3-charge_throw.png
+#begin root/3-charge_throw.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -170,9 +170,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/3-charge_throw.png
+/build:root/3-charge_throw.png
 
-#begin player/3-fall.png
+#begin root/3-fall.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -182,9 +182,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/3-fall.png
+/build:root/3-fall.png
 
-#begin player/3-rise.png
+#begin root/3-rise.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -194,9 +194,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/3-rise.png
+/build:root/3-rise.png
 
-#begin player/3-slide.png
+#begin root/3-slide.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -206,9 +206,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/3-slide.png
+/build:root/3-slide.png
 
-#begin player/3-throw.png
+#begin root/3-throw.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -218,9 +218,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:player/3-throw.png
+/build:root/3-throw.png
 
-#begin tall_champi/tall_champi1.png
+#begin root/tall_champi/tall_champi1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -230,9 +230,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:tall_champi/tall_champi1.png
+/build:root/tall_champi/tall_champi1.png
 
-#begin tall_champi/tall_champi2.png
+#begin root/tall_champi/tall_champi2.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -242,9 +242,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:tall_champi/tall_champi2.png
+/build:root/tall_champi/tall_champi2.png
 
-#begin tall_champi/tall_champi3.png
+#begin root/tall_champi/tall_champi3.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -254,9 +254,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:tall_champi/tall_champi3.png
+/build:root/tall_champi/tall_champi3.png
 
-#begin tall_champi/tall_champi4.png
+#begin root/tall_champi/tall_champi4.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -266,9 +266,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:tall_champi/tall_champi4.png
+/build:root/tall_champi/tall_champi4.png
 
-#begin textures/bg1.png
+#begin root/bg1.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -278,9 +278,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/bg1.png
+/build:root/bg1.png
 
-#begin textures/bg1-top.png
+#begin root/bg1-top.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -290,9 +290,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/bg1-top.png
+/build:root/bg1-top.png
 
-#begin textures/ground.png
+#begin root/ground.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -302,9 +302,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/ground.png
+/build:root/ground.png
 
-#begin textures/ground_top.png
+#begin root/ground_top.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -314,9 +314,9 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/ground_top.png
+/build:root/ground_top.png
 
-#begin textures/sky.png
+#begin root/sky.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -326,5 +326,4 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:textures/sky.png
-
+/build:root/sky.png
