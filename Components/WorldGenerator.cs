@@ -11,7 +11,8 @@ class WorldGenerator : Component
 
     public void generate()
     {
-        Entity.Scene.CreateEntity("aa").AddComponent<Bumper>().Transform.Position = new Vector2(500, 500);
-
+        var newComponent = Entity.Scene.CreateEntity("aa").AddComponent<Bumper>();
+        newComponent.Transform.Position = new Vector2(500, -100);
+        newComponent.Transform.Parent = this.Transform;
     }
 }

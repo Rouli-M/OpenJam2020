@@ -72,7 +72,11 @@ public class Player : Component, IUpdatable
         {
             WorldObject other = collisionResult.Collider.Entity.GetComponent<WorldObject>();
             if (other != null)
-                Velocity = other.Collision(this, collisionResult.Normal);
+            {
+                // gestion collision
+                Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
+                Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+            }
             Ground ground = collisionResult.Collider.Entity.GetComponent<Ground>();
             if (ground != null)
             {
@@ -99,9 +103,9 @@ public class Player : Component, IUpdatable
             }
         }
     }
-    public void Throw(float velocity, float angle = (float)Math.PI / 4)
+    public void Throw(float velocity, float angle = MathF.PI / 4)
     {
-        Velocity = velocity * new Vector2((float)Math.Cos(angle), -(float)Math.Sin(angle));
+        Velocity = velocity * new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
     }
     private void AddAtlasAnimation(string name)
     {
