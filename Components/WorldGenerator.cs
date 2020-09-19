@@ -17,7 +17,7 @@ class WorldGenerator : Component, IUpdatable
             int type = Random.NextInt(0);
             switch (type) {
                 case 0:
-                    int yPosition = 0;
+                    int yPosition = -62;
                     if (checkPosition(new Vector2(xPosition, yPosition)))
                     {
                         var newComponent = Entity.Scene.CreateEntity("bumper").AddComponent<Bumper>();
