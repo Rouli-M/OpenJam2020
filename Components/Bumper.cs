@@ -12,7 +12,7 @@ class Bumper : WorldObject, ITriggerListener
 
     public override void OnAddedToEntity()
     {
-        var collider = Entity.AddComponent(new BoxCollider(220, 80));
+        var collider = Entity.AddComponent(new BoxCollider(-110, -10, 220, 80));
         collider.IsTrigger = true;
 
         SpriteAtlas atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");

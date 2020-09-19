@@ -12,12 +12,12 @@ class WorldGenerator : Component, IUpdatable
 
     public void generate(float xPosition)
     {
-        if (Random.NextInt(64) == 0)
+        if (Random.NextInt(128) == 0)
         {
             int type = Random.NextInt(0);
             switch (type) {
                 case 0:
-                    int yPosition = 0;
+                    int yPosition = -62;
                     if (checkPosition(new Vector2(xPosition, yPosition)))
                     {
                         var newComponent = Entity.Scene.CreateEntity("bumper").AddComponent<Bumper>();

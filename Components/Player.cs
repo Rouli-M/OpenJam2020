@@ -32,7 +32,7 @@ public class Player : Component, IUpdatable
         collider.ShouldColliderScaleAndRotateWithTransform = false;
         mover = Entity.AddComponent(new Mover());
 
-        Transform.Position = new Vector2(0, -80);
+        Transform.Position = new Vector2(0, -130);
         Velocity = new Vector2(0, 0);
 
         fsm = new StateMachine<Player>(this, new NotThrownState());
@@ -51,6 +51,7 @@ public class Player : Component, IUpdatable
         AddSingleTextureAnimation("canon");
         AddSingleTextureAnimation("3-rise");
         AddSingleTextureAnimation("3-fall");
+        AddSingleTextureAnimation("3-top");
         AddSingleTextureAnimation("3-slide");
         AddSingleTextureAnimation("3-charge_throw");
         AddSingleTextureAnimation("2-fly");
@@ -88,8 +89,11 @@ public class Player : Component, IUpdatable
             if (ground != null)
             {
                 // gestion collision
-                Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
-                Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+                if (Vector2.Dot(collisionResult.Normal, Velocity) < 0)
+                {
+                    Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
+                    Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+                }
 
                 // frottements
                 if (Velocity.Length() < groundFriction * Time.DeltaTime)

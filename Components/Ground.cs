@@ -18,7 +18,7 @@ public class Ground : Component
         var basee = Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("base")));
         basee.LocalOffset = new Vector2(-1205 + DESIGN_WIDTH / 2, -475);
 
-        Transform.Position = new Vector2(0, GROUND_HEIGHT / 2);
+        Transform.Position = new Vector2(0, 0);
 
         Entity.AddTiledTexture("root/ground", 0.1f, groundWidth, GROUND_HEIGHT * 100);
         Entity.AddTiledTexture("root/ground_top", 0, groundWidth);
