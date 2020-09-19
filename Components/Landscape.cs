@@ -65,5 +65,6 @@ public class Landscape : Component
         if (layers == null) return;
 
         layers[0].transform.Position += layers[0].multiplier * delta;
+        //layers[0].transform.Position = layers[0].multiplier * PositionX;
     }
 }

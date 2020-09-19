@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics.PackedVector;
 using Nez;
 
 public class CameraFollow : Component, IUpdatable
@@ -6,6 +7,7 @@ public class CameraFollow : Component, IUpdatable
     Player player;
     Vector2 offset;
     Landscape landscape;
+    Camera camera;
 
     public override void OnAddedToEntity()
     {
@@ -13,24 +15,24 @@ public class CameraFollow : Component, IUpdatable
         
         player = Entity.Scene.FindComponentOfType<Player>();
         landscape = Entity.Scene.FindComponentOfType<Landscape>();
+        camera = Entity.Scene.Camera;
     }
 
-    float maxSpeed = 100;
 
     public void Update()
     {
-        offset = new Vector2(0, .2f * Constants.DESIGN_HEIGHT) + new Vector2(0, -150) - 0.3f *  player.Velocity;
-        var newPosition = player.Transform.Position - offset;
-        var delta = newPosition - Transform.Position;
-        var length = delta.Length();
+        offset = new Vector2(0, .2f * Constants.DESIGN_HEIGHT) + new Vector2(0, -150) - 0f * player.Velocity;
+        Vector2 newPosition = player.Transform.Position - offset;
+       // Vector2 delta = player.Velocity;
+        float length = player.Velocity.Length() * Time.DeltaTime;
 
-        var camera = Entity.Scene.Camera;
-        var normalized = Mathf.Clamp01(length / maxSpeed);
+        
 
-        camera.RawZoom = Mathf.Lerp(0.8f, .3f, normalized);
+        camera.RawZoom = Mathf.Lerp(0.8f, .3f, Mathf.Clamp01(length / 100f));
 
-        Transform.Position = newPosition;
+        // Transform.Position = player.Entity.Position;//
+        Transform.Position =  newPosition * 0.1f + 0.9f * Transform.Position;
 
-        landscape.Scroll(delta);
+        landscape.Scroll(player.Velocity * Time.DeltaTime);
     }
 }

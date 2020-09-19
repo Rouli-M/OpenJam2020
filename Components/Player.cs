@@ -29,7 +29,8 @@ public class Player : Component, IUpdatable
     {
         base.OnAddedToEntity();
 
-        Entity.AddComponent(new BoxCollider(Box3.X, Box3.Y));
+        var collider = Entity.AddComponent(new BoxCollider(Box3.X, Box3.Y));
+        collider.ShouldColliderScaleAndRotateWithTransform = false;
         mover = Entity.AddComponent(new Mover());
 
         Transform.Position = new Vector2(0, -80);
