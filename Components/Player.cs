@@ -69,6 +69,19 @@ public class Player : Component, IUpdatable
         success = Core.Content.Load<SoundEffect>("success");
     }
 
+    internal bool IsThrowing()
+    {
+        return (fsm.CurrentState is Throwing_2State || fsm.CurrentState is Throwing_3State);
+    }
+
+    internal int DinoCount()
+    {
+        if (fsm.CurrentState is Flying_1State || fsm.CurrentState is Sliding_1State) return 1;
+        else if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Sliding_2State || fsm.CurrentState is Throwing_2State) return 2;
+        else if (fsm.CurrentState is Flying_3State || fsm.CurrentState is Sliding_3State || fsm.CurrentState is Throwing_3State) return 3;
+        return 0;
+    }
+
     public void Update()
     {
         fsm.Update(Time.DeltaTime);
@@ -93,14 +106,12 @@ public class Player : Component, IUpdatable
                 Velocity = Vector2.Dot(tangent, Velocity) * tangent;
             }
             Ground ground = collisionResult.Collider.Entity.GetComponent<Ground>();
-            if (ground != null)
+            if (ground != null &&Vector2.Dot(collisionResult.Normal, Velocity) < 0)
             {
-                // gestion collision
-                if (Vector2.Dot(collisionResult.Normal, Velocity) < 0)
-                {
-                    Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
-                    Velocity = Vector2.Dot(tangent, Velocity) * tangent;
-                }
+
+                Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
+                Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+
 
                 // frottements
                 if (Velocity.Length() < groundFriction * Time.DeltaTime)
