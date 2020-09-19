@@ -23,6 +23,7 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     static ImGuiManager _imGuiManager;
 
     NezSpriteFont font;
+    bool isPaused;
 
     public Scene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
     {
@@ -133,7 +134,12 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
             ToggleImGui();
 
         if (Input.IsKeyPressed(Keys.P))
-            Time.TimeScale = Time.TimeScale == 1 ? 0 : 1;
+        {
+            isPaused = !isPaused;
+            Time.TimeScale = isPaused ? 0 : 1;
+        }
+        else if (isPaused)
+            Time.TimeScale = 0;
 
         base.Update();
     }
@@ -172,7 +178,7 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         Graphics.Instance.Batcher.Draw(source, finalRenderDestinationRect, Color.White);
         Graphics.Instance.Batcher.End();
 
-        if (Time.TimeScale == 0)
+        if (isPaused)
         {
             Graphics.Instance.Batcher.Begin();
             Graphics.Instance.Batcher.DrawString(font, "Pause", new Vector2(550, 300), Color.Red);
