@@ -28,6 +28,10 @@ class Bumper : WorldObject, ITriggerListener
     {
         var player = other.GetComponent<Player>();
         player.Velocity += MathF.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
+        /*
+        if(player.DinoCount() == 1) player.fsm.ChangeState<Flying_1State>();
+        else if (player.DinoCount() == 2) player.fsm.ChangeState<Flying_2State>();
+        else if (player.DinoCount() == 3) player.fsm.ChangeState<Flying_3State>();*/
         animator.Play("bump", SpriteAnimator.LoopMode.Once);
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
@@ -19,6 +20,8 @@ public class Player : Component, IUpdatable
 
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
+
+    public SoundEffect charge_canon_sound, success;
 
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
@@ -62,6 +65,8 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_3State());
         fsm.AddState(new Throwing_2State());
 
+        charge_canon_sound = Core.Content.Load<SoundEffect>("charge_up");
+        success = Core.Content.Load<SoundEffect>("success");
     }
 
     public void Update()

@@ -9,6 +9,7 @@ public class HatchState : State<Player>
     {
         base.Begin();
         _context.animator.Play("1-win");
+        _context.success.Play();
     }
     public override void Update(float deltaTime)
     {

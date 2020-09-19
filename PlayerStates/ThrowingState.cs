@@ -11,6 +11,7 @@ public class ThrowingState : State<Player>
     {
         base.Begin();
         _context.animator.Play("canon_loaded");
+        _context.charge_canon_sound.Play();
     }
     public override void Update(float deltaTime)
     {
