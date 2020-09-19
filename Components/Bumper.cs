@@ -1,9 +1,4 @@
-﻿using Nez;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using OpenJam2020;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 class Bumper : WorldObject
 {
