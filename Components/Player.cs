@@ -11,7 +11,7 @@ using Nez.Textures;
 
 public class Player : Component, IUpdatable
 {
-    private const float gravity = 0.1f;
+    private const float gravity = 360f;
 
     public Vector2 Velocity;
     Mover mover;
@@ -54,10 +54,11 @@ public class Player : Component, IUpdatable
     {
         fsm.Update(Time.DeltaTime);
     }
-    public void PhysicalUpdate()
+    public void PhysicalUpdate(float TimeScale = 1)
     {
-        Velocity.Y += gravity;
-        if (mover.Move(Velocity, out var collisionResult))
+        Time.TimeScale = TimeScale;
+        Velocity.Y += gravity * Time.DeltaTime;
+        if (mover.Move(Velocity * Time.DeltaTime, out var collisionResult))
         {
             WorldObject other = collisionResult.Collider.Entity.GetComponent<WorldObject>();
             if (other != null)
