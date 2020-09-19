@@ -7,9 +7,14 @@ using OpenJam2020.Components;
 
 public class Throwing_2State : State<Player>
 {
+    public override void Begin()
+    {
+        Time.TimeScale = 0.1f;
+    }
+
     public override void Update(float deltaTime)
     {
-        _context.PhysicalUpdate(0.1f);
+        _context.PhysicalUpdate();
         if (!_context.IsThrowInputGiven())
         {
             _context.Throw(600f);
@@ -20,5 +25,10 @@ public class Throwing_2State : State<Player>
             collider.ShouldColliderScaleAndRotateWithTransform = false;
             _context.Entity.Scene.CreateEntity("petit_dino").AddComponent(new DroppedDino(2));
         }
+    }
+
+    public override void End()
+    {
+        Time.TimeScale = 1;
     }
 }
