@@ -84,7 +84,8 @@ public class Player : Component, IUpdatable
                 if (Velocity.Length() < groundFriction * Time.DeltaTime)
                 {
                     Velocity = Vector2.Zero;
-                    fsm.ChangeState<FallenState>();
+                    if (fsm.CurrentState is Flying_1State)
+                        fsm.ChangeState<FallenState>();
                 }
                 else
                     Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
