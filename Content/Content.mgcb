@@ -16,6 +16,12 @@
 #begin bundle.png
 /copy:bundle.png
 
+#begin charge_up.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:charge_up.wav
+
 #begin Font.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -179,6 +185,18 @@
 /processorParam:TextureFormat=Color
 /build:root/3-throw.png
 
+#begin root/3-top.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/3-top.png
+
 #begin root/base.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -215,6 +233,30 @@
 /processorParam:TextureFormat=Color
 /build:root/bg1-top.png
 
+#begin root/canon.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/canon.png
+
+#begin root/canon_empty.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/canon_empty.png
+
 #begin root/canon_loaded.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -226,6 +268,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:root/canon_loaded.png
+
+#begin root/canon_loaded.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/canon_loaded.png
+
+#begin root/canon_shoot.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/canon_shoot.png
 
 #begin root/champi/champi1.png
 /importer:TextureImporter
@@ -358,4 +424,17 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:root/tall_champi/tall_champi4.png
+
+#begin RouliXL.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:RouliXL.spritefont
+
+#begin success.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:success.wav
 

@@ -53,6 +53,7 @@ public class Player : Component, IUpdatable
         AddSingleTextureAnimation("canon");
         AddSingleTextureAnimation("3-rise");
         AddSingleTextureAnimation("3-fall");
+        AddSingleTextureAnimation("3-top");
         AddSingleTextureAnimation("3-slide");
         AddSingleTextureAnimation("3-charge_throw");
         AddSingleTextureAnimation("2-fly");
@@ -118,15 +119,25 @@ public class Player : Component, IUpdatable
             }
         }
     }
-    public void Throw(float velocity, float angle = MathF.PI / 4)
+
+    public void Throw(float speed, float angle = MathF.PI / 4)
     {
-        this.Velocity = new Vector2(0.35f * this.Velocity.X, -0.35f * this.Velocity.X) + velocity * new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
+        var direction = new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
+        Transform.Position += direction * 600;
+        Throw(speed, direction);
     }
+
+    public void Throw(float speed, Vector2 direction)
+    {
+        this.Velocity = new Vector2(0.35f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
+    }
+
     private void AddAtlasAnimation(string name)
     {
         var animation = atlas.GetAnimation(name);
         animator.AddAnimation(name, animation);
     }
+
     private void AddSingleTextureAnimation(string name)
     {
         var sprite = atlas.GetSprite(name);
