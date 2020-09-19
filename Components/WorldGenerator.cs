@@ -12,7 +12,7 @@ class WorldGenerator : Component, IUpdatable
 
     public void generate(float xPosition)
     {
-        if (Random.NextInt(64) == 0)
+        if (Random.NextInt(128) == 0)
         {
             int type = Random.NextInt(0);
             switch (type) {
