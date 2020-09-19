@@ -15,7 +15,7 @@ public class Player : Component, IUpdatable
 
     public Vector2 Velocity;
     Mover mover;
-    
+
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
 
@@ -26,7 +26,7 @@ public class Player : Component, IUpdatable
         Entity.AddComponent(new BoxCollider(260, 260));
         mover = Entity.AddComponent(new Mover());
 
-        Transform.Position = new Vector2(0, -130);
+        Transform.Position = new Vector2(0, -80);
         Velocity = new Vector2(0, 0);
 
         fsm = new StateMachine<Player>(this, new NotThrownState());
