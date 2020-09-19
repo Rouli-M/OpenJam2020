@@ -39,7 +39,7 @@ public class Landscape : Component
         entity.Parent = Transform;
         entity.Transform.Position = new Vector2(0, 300);
 
-        var renderer = entity.AddTiledTexture("textures/sky", 1, Constants.DESIGN_WIDTH * 100, SKY_HEIGHT);
+        var renderer = entity.AddTiledTexture("root/sky", 1, Constants.DESIGN_WIDTH * 100, SKY_HEIGHT);
         renderer.OriginNormalized = new Vector2(.5f, 1);
         return entity;
     }
@@ -50,10 +50,10 @@ public class Landscape : Component
         entity.Parent = Transform;
         entity.Transform.Position = new Vector2(0, 300);
 
-        var treesRenderer = entity.AddTiledTexture("textures/bg1", .9f, Constants.DESIGN_WIDTH * 100, TREES_HEIGHT);
+        var treesRenderer = entity.AddTiledTexture("root/bg1", .9f, Constants.DESIGN_WIDTH * 100, TREES_HEIGHT);
         treesRenderer.OriginNormalized = new Vector2(.5f, 1);
 
-        var topRenderer = entity.AddTiledTexture("textures/bg1-top", .8f, Constants.DESIGN_WIDTH * 100);
+        var topRenderer = entity.AddTiledTexture("root/bg1-top", .8f, Constants.DESIGN_WIDTH * 100);
         topRenderer.OriginNormalized = new Vector2(.5f, 1);
         topRenderer.LocalOffset = new Vector2(0, -treesRenderer.Origin.Y);
 

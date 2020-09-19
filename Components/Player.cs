@@ -102,6 +102,9 @@ public class Player : Component, IUpdatable
                     state3.slide();
             }
         }
+
+        if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = (float)Math.Atan2((double)Velocity.Y, (double)Velocity.X);
+        else Transform.Rotation = 0f;
     }
     public void Throw(float velocity, float angle = MathF.PI / 4)
     {
