@@ -21,7 +21,7 @@ public class Player : Component, IUpdatable
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
 
-    public SoundEffect charge_canon_sound, success;
+    public SoundEffect charge_canon_sound, success, throw_sound, hold_sound;
 
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
@@ -66,7 +66,9 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_2State());
 
         charge_canon_sound = Core.Content.Load<SoundEffect>("charge_up");
+        throw_sound = Core.Content.Load<SoundEffect>("throw1");
         success = Core.Content.Load<SoundEffect>("success");
+        hold_sound = Core.Content.Load<SoundEffect>("hold");
     }
 
     internal bool IsThrowing()
@@ -148,6 +150,7 @@ public class Player : Component, IUpdatable
 
     public Vector2 Throw(float speed, float angle = MathF.PI / 4)
     {
+        throw_sound.Play();
         var direction = new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
         this.Velocity = new Vector2(0.35f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
         return direction;

@@ -29,6 +29,9 @@ public class Game : Core
     {
         Content.Load<SoundEffect>("charge_up");
         Content.Load<SoundEffect>("success");
+        Content.Load<SoundEffect>("throw1");
+        Content.Load<SoundEffect>("bounce");
+        Content.Load<SoundEffect>("hold");
         base.LoadContent();
     }
 }

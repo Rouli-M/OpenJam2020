@@ -10,6 +10,7 @@ public class Throwing_3State : State<Player>
     public override void Begin()
     {
         _context.animator.Play("3-charge_throw");
+        _context.hold_sound.Play();
         Time.TimeScale = 0.1f;
     }
 

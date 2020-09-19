@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
@@ -9,6 +10,8 @@ class TallBumper : WorldObject, ITriggerListener
     private const float minBumpVelocity = 500f;
     private readonly Vector2 bumpDirection = new Vector2(0, -1);
     private SpriteAnimator animator;
+
+    private SoundEffect bounce_sound;
 
     public override void OnAddedToEntity()
     {
@@ -21,6 +24,8 @@ class TallBumper : WorldObject, ITriggerListener
         animator.AddAnimation("bump", atlas.GetAnimation("tall_champi"));
         Entity.AddComponent(animator);
 
+        bounce_sound = Core.Content.Load<SoundEffect>("bounce");
+
         base.OnAddedToEntity();
     }
 
@@ -29,6 +34,7 @@ class TallBumper : WorldObject, ITriggerListener
         var player = other.GetComponent<Player>();
         player.Velocity += MathF.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
         animator.Play("bump", SpriteAnimator.LoopMode.Once);
+        bounce_sound.Play();
     }
 
     public void OnTriggerExit(Collider other, Collider local)
