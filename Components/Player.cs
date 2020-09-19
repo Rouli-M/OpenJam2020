@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
+using Nez.Textures;
 
 public class Player : Component, IUpdatable
 {
@@ -14,8 +15,9 @@ public class Player : Component, IUpdatable
 
     public Vector2 Velocity;
     Mover mover;
-    
+
     public StateMachine<Player> fsm;
+    SpriteAnimator animator;
 
     public override void OnAddedToEntity()
     {
@@ -24,15 +26,23 @@ public class Player : Component, IUpdatable
         Entity.AddComponent(new BoxCollider(260, 260));
         mover = Entity.AddComponent(new Mover());
 
+        Transform.Position = new Vector2(0, -80);
+        Velocity = new Vector2(0, 0);
+
         fsm = new StateMachine<Player>(this, new NotThrownState());
         fsm.AddState(new FallenState());
         fsm.AddState(new Flying_3State());
+        fsm.AddState(new Flying_2State());
+        fsm.AddState(new Flying_1State());
+        fsm.AddState(new Sliding_3State());
+        fsm.AddState(new Sliding_2State());
+        fsm.AddState(new Sliding_1State());
+        fsm.AddState(new ThrowingState());
+        fsm.AddState(new Throwing_3State());
+        fsm.AddState(new Throwing_2State());
 
-        var texture = Entity.Scene.Content.Load<Texture2D>("player/3-rise");
-        Entity.AddComponent(new SpriteRenderer(texture));
-
-        Transform.Position = new Vector2(0, -80);
-        Velocity = new Vector2(0, 0);
+        animator = Entity.AddComponent(new SpriteAnimator());
+        addSingleTextureAnimation("3-rise");
     }
 
     public void Update()
@@ -58,5 +68,11 @@ public class Player : Component, IUpdatable
     public void Throw(float angle, float velocity)
     {
         Velocity = velocity * new Vector2((float)Math.Cos(angle), -(float)Math.Sin(angle));
+    }
+    private void addSingleTextureAnimation(string name)
+    {
+        var texture = Entity.Scene.Content.Load<Texture2D>("player/" + name);
+        var sprite = new Sprite(texture);
+        animator.AddAnimation(name, new[] { sprite });
     }
 }
