@@ -1,12 +1,20 @@
 using Microsoft.Xna.Framework;
 using Nez;
 
-public class CameraScroll : Component, IUpdatable
+public class Camera : Component, IUpdatable
 {
-    float scrollSpeed = 300f;
+    Player player;
+    Vector2 offset;
+
+    public override void OnAddedToEntity()
+    {
+        base.OnAddedToEntity();
+        player = Entity.Scene.FindComponentOfType<Player>();
+        offset = new Vector2(0, .2f * Constants.DESIGN_HEIGHT);
+    }
 
     public void Update()
     {
-        Transform.Position += new Vector2(scrollSpeed * Time.DeltaTime, 0);
+        Transform.Position = player.Transform.Position - offset;
     }
 }

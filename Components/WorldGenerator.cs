@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using OpenJam2020;
-using Nez;
+﻿using Nez;
 using Microsoft.Xna.Framework;
 
 class WorldGenerator : Component
