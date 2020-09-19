@@ -16,6 +16,12 @@
 #begin bundle.png
 /copy:bundle.png
 
+#begin charge_up.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:charge_up.wav
+
 #begin Font.spritefont
 /importer:FontDescriptionImporter
 /processor:FontDescriptionProcessor
@@ -358,4 +364,17 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:root/tall_champi/tall_champi4.png
+
+#begin RouliXL.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:RouliXL.spritefont
+
+#begin success.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:success.wav
 
