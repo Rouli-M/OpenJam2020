@@ -16,6 +16,13 @@
 #begin bundle.png
 /copy:bundle.png
 
+#begin Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font.spritefont
+
 #begin root/1-fly.png
 /importer:TextureImporter
 /processor:TextureProcessor

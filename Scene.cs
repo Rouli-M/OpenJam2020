@@ -9,6 +9,7 @@ using Nez.Tweens;
 using Nez.ImGuiTools;
 using Console = Nez.Console;
 using Microsoft.Xna.Framework.Input;
+using Nez.BitmapFonts;
 
 public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 {
@@ -21,11 +22,15 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 
     static ImGuiManager _imGuiManager;
 
+    NezSpriteFont font;
+
     public Scene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
     {
         // Don't actually add the renderer since we will manually call it later
         _screenSpaceRenderer = new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer);
         _screenSpaceRenderer.ShouldDebugRender = false;
+
+        font = new NezSpriteFont(Content.Load<SpriteFont>("Font"));
 
         SetDesignResolution(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT, SceneResolutionPolicy.BestFit);
         Screen.SetSize(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT);
@@ -162,9 +167,17 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     {
         Core.GraphicsDevice.SetRenderTarget(null);
         Core.GraphicsDevice.Clear(letterboxColor);
+
         Graphics.Instance.Batcher.Begin(BlendState.Opaque, samplerState, DepthStencilState.None, RasterizerState.CullNone, null);
         Graphics.Instance.Batcher.Draw(source, finalRenderDestinationRect, Color.White);
         Graphics.Instance.Batcher.End();
+
+        if (Time.TimeScale == 0)
+        {
+            Graphics.Instance.Batcher.Begin();
+            Graphics.Instance.Batcher.DrawString(font, "Pause", new Vector2(550, 300), Color.Red);
+            Graphics.Instance.Batcher.End();
+        }
 
         _screenSpaceRenderer.Render(_scene);
     }

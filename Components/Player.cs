@@ -67,9 +67,8 @@ public class Player : Component, IUpdatable
     {
         fsm.Update(Time.DeltaTime);
     }
-    public void PhysicalUpdate(float TimeScale = 1)
+    public void PhysicalUpdate()
     {
-        Time.TimeScale = TimeScale;
         Velocity.Y += gravity * Time.DeltaTime;
 
         if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = MathF.Atan2(Velocity.Y, Velocity.X);
