@@ -11,12 +11,16 @@ public class NotThrownState : State<Player>
     float rotationSpeed = 2;
     bool clockwise = false;
 
+    public override void Begin()
+    {
+        _context.animator.Play("canon");
+        base.Begin();
+    }
+
     public override void Update(float deltaTime)
     {
         if (_context.IsThrowInputGiven())
-        {
             _context.fsm.ChangeState<ThrowingState>();
-        }
 
         if (clockwise)
         {

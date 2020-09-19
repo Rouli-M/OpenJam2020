@@ -5,6 +5,12 @@ using Nez.AI.FSM;
 
 public class Flying_3State : State<Player>
 {
+    public override void Begin()
+    {
+        base.Begin();
+        _context.animator.Play("3-rise");
+    }
+
     public override void Update(float deltaTime)
     {
         _context.PhysicalUpdate();
@@ -16,14 +22,10 @@ public class Flying_3State : State<Player>
             _context.animator.Play("3-top");
 
         if (_context.IsThrowInputGiven())
-        {
             _context.fsm.ChangeState<Throwing_3State>();
-            _context.animator.Play("3-charge_throw");
-        }
     }
     public void slide()
     {
         _context.fsm.ChangeState<Sliding_3State>();
-        _context.animator.Play("3-slide");
     }
 }

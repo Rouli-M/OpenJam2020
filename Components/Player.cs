@@ -35,6 +35,21 @@ public class Player : Component, IUpdatable
         Transform.Position = new Vector2(0, -130);
         Velocity = new Vector2(0, 0);
 
+        animator = Entity.AddComponent(new SpriteAnimator());
+        AddSingleTextureAnimation("canon");
+        AddSingleTextureAnimation("canon_loaded");
+        AddSingleTextureAnimation("3-rise");
+        AddSingleTextureAnimation("3-fall");
+        AddSingleTextureAnimation("3-top");
+        AddSingleTextureAnimation("3-slide");
+        AddSingleTextureAnimation("3-charge_throw");
+        AddSingleTextureAnimation("2-fly");
+        AddSingleTextureAnimation("2-slide");
+        AddSingleTextureAnimation("2-charge_throw");
+        AddSingleTextureAnimation("1-fly");
+        AddAtlasAnimation("1-slide");
+        AddAtlasAnimation("1-win");
+
         fsm = new StateMachine<Player>(this, new NotThrownState());
         fsm.AddState(new HatchState());
         fsm.AddState(new Flying_3State());
@@ -47,19 +62,6 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_3State());
         fsm.AddState(new Throwing_2State());
 
-        animator = Entity.AddComponent(new SpriteAnimator());
-        AddSingleTextureAnimation("canon");
-        AddSingleTextureAnimation("3-rise");
-        AddSingleTextureAnimation("3-fall");
-        AddSingleTextureAnimation("3-top");
-        AddSingleTextureAnimation("3-slide");
-        AddSingleTextureAnimation("3-charge_throw");
-        AddSingleTextureAnimation("2-fly");
-        AddSingleTextureAnimation("2-slide");
-        AddSingleTextureAnimation("2-charge_throw");
-        AddSingleTextureAnimation("1-fly");
-        AddAtlasAnimation("1-slide");
-        AddAtlasAnimation("1-win");
     }
 
     public void Update()

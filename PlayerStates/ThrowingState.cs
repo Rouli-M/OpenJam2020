@@ -6,6 +6,11 @@ using OpenJam2020.Components;
 
 public class ThrowingState : State<Player>
 {
+    public override void Begin()
+    {
+        base.Begin();
+        _context.animator.Play("canon_loaded");
+    }
     public override void Update(float deltaTime)
     {
         if (!_context.IsThrowInputGiven())
@@ -14,7 +19,6 @@ public class ThrowingState : State<Player>
             entity.Transform.Rotation = _context.Entity.Rotation;
             _context.Throw(1200f, -_context.Entity.Rotation);
             _context.fsm.ChangeState<Flying_3State>();
-            _context.animator.Play("3-rise");
         }
     }
 }

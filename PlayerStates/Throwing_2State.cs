@@ -9,6 +9,7 @@ public class Throwing_2State : State<Player>
 {
     public override void Begin()
     {
+        _context.animator.Play("2-charge_throw");
         Time.TimeScale = 0.1f;
     }
 
