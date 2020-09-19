@@ -10,7 +10,7 @@ public class CameraFollow : Component, IUpdatable
     public override void OnAddedToEntity()
     {
         base.OnAddedToEntity();
-        offset = new Vector2(0, .2f * Constants.DESIGN_HEIGHT);
+        offset = new Vector2(0, .2f * Constants.DESIGN_HEIGHT) + new Vector2(0, -150);
         player = Entity.Scene.FindComponentOfType<Player>();
         landscape = Entity.Scene.FindComponentOfType<Landscape>();
     }
@@ -26,7 +26,7 @@ public class CameraFollow : Component, IUpdatable
         var camera = Entity.Scene.Camera;
         var normalized = Mathf.Clamp01(length / maxSpeed);
 
-        camera.RawZoom = Mathf.Lerp(1, .3f, normalized);
+        camera.RawZoom = Mathf.Lerp(0.8f, .3f, normalized);
 
         Transform.Position = newPosition;
 

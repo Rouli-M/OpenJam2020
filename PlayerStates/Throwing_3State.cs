@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Nez;
 using Nez.AI.FSM;
+using OpenJam2020.Components;
 
 public class Throwing_3State : State<Player>
 {
@@ -16,6 +17,7 @@ public class Throwing_3State : State<Player>
             _context.animator.Play("2-fly");
             _context.Entity.RemoveComponent<BoxCollider>();
             _context.Entity.AddComponent(new BoxCollider(_context.Box2.X, _context.Box2.Y));
+            _context.Entity.Scene.CreateEntity("petit_dino").AddComponent(new DroppedDino(3));
         }
     }
 }
