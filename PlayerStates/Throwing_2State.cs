@@ -12,7 +12,7 @@ public class Throwing_2State : State<Player>
         _context.PhysicalUpdate(0.1f);
         if (!_context.IsThrowInputGiven())
         {
-            _context.Throw(600f);
+            _context.Throw(800f);
             _context.fsm.ChangeState<Flying_1State>();
             _context.animator.Play("1-fly");
             _context.Entity.RemoveComponent<BoxCollider>();

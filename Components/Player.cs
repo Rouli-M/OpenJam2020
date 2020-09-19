@@ -115,7 +115,7 @@ public class Player : Component, IUpdatable
     }
     public void Throw(float velocity, float angle = MathF.PI / 4)
     {
-        Velocity = velocity * new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
+        Velocity = 0.5f * Velocity + velocity * new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
     }
     private void AddAtlasAnimation(string name)
     {
