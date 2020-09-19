@@ -1,0 +1,1 @@
+.\SpriteAtlasPacker.exe -image:bundle.png -map:bundle.atlas -fps:7 .
