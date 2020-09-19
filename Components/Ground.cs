@@ -13,7 +13,7 @@ public class Ground : Component
         base.OnAddedToEntity();
 
         Entity.AddComponent(new BoxCollider(0, 0, groundWidth, GROUND_HEIGHT));
-        Transform.Position = new Vector2(DESIGN_WIDTH / 2, GROUND_HEIGHT / 2);
+        Transform.Position = new Vector2(0, GROUND_HEIGHT / 2);
 
         Entity.AddTiledTexture("root/ground", 0.1f, groundWidth, GROUND_HEIGHT * 100);
         Entity.AddTiledTexture("root/ground_top", 0, groundWidth);
