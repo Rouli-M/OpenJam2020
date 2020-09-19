@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework.Input;
+﻿using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.Console;
 
@@ -11,8 +12,9 @@ namespace OpenJam2020
             base.Initialize();
             Window.Title = "Game";
             Window.AllowUserResizing = true;
-            Screen.SynchronizeWithVerticalRetrace = true;
             DebugConsole.ConsoleKey = Keys.F3;
+            Screen.SynchronizeWithVerticalRetrace = true;
+            Core.DefaultSamplerState = new SamplerState { Filter = TextureFilter.Linear };
             Scene = new BasicScene();
         }
     }

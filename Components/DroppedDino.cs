@@ -21,8 +21,8 @@ namespace OpenJam2020.Components
         {
             base.OnAddedToEntity();
 
-            if (DinoID == 3) AddSingleTextureAnimation("player/3-throw");
-            if (DinoID == 2) AddSingleTextureAnimation("player/2-throw");
+            if (DinoID == 3) AddSingleTextureAnimation("root/3-throw");
+            if (DinoID == 2) AddSingleTextureAnimation("root/2-throw");
             Transform.Position = Entity.Scene.FindComponentOfType<Player>().Transform.Position;
         }
 
