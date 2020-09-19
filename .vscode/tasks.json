@@ -43,6 +43,15 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "make_atlas",
+            "options": {
+                "cwd": "${workspaceFolder}/Content"
+            },
+            "command": "./atlas.bat",
+            "type": "process",
+            "problemMatcher": []
         }
     ]
 }
