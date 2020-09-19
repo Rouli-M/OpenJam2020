@@ -9,7 +9,7 @@ public class ThrowingState : State<Player>
     {
         if (!_context.IsThrowInputGiven())
         {
-            _context.Throw(1200f, (float)Math.PI / 4);
+            _context.Throw(1200f, -_context.Entity.Rotation);
             _context.fsm.ChangeState<Flying_3State>();
             _context.animator.Play("3-rise");
         }

@@ -115,15 +115,18 @@ public class Player : Component, IUpdatable
             }
         }
     }
+
     public void Throw(float velocity, float angle = MathF.PI / 4)
     {
         this.Velocity = new Vector2(0.35f * this.Velocity.X, -0.35f * this.Velocity.X) + velocity * new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
     }
+
     private void AddAtlasAnimation(string name)
     {
         var animation = atlas.GetAnimation(name);
         animator.AddAnimation(name, animation);
     }
+
     private void AddSingleTextureAnimation(string name)
     {
         var sprite = atlas.GetSprite(name);
