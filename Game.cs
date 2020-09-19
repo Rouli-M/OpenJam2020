@@ -20,5 +20,8 @@ public class Game : Core
         Scene = new BasicScene();
 
         Atlas = Content.LoadSpriteAtlas("Content/bundle.atlas");
+    
+        TargetElapsedTime = TimeSpan.FromTicks(10000000 / 60);
+        IsFixedTimeStep = true;
     }
 }

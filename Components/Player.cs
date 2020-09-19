@@ -120,16 +120,11 @@ public class Player : Component, IUpdatable
         }
     }
 
-    public void Throw(float speed, float angle = MathF.PI / 4)
+    public Vector2 Throw(float speed, float angle = MathF.PI / 4)
     {
         var direction = new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
-        Transform.Position += direction * 600;
-        Throw(speed, direction);
-    }
-
-    public void Throw(float speed, Vector2 direction)
-    {
         this.Velocity = new Vector2(0.35f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
+        return direction;
     }
 
     private void AddAtlasAnimation(string name)
