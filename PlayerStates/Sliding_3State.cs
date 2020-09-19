@@ -17,4 +17,9 @@ public class Sliding_3State : State<Player>
         if (_context.IsThrowInputGiven())
             _context.fsm.ChangeState<Throwing_3State>();
     }
+
+    internal void fly()
+    {
+        throw new NotImplementedException();
+    }
 }

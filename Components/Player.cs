@@ -94,7 +94,7 @@ public class Player : Component, IUpdatable
         else Transform.Rotation = 0f;
 
         if (fsm.CurrentState is Sliding_1State) groundFriction = 100;
-        else groundFriction = 300f;
+        else groundFriction = 250f;
 
         if (mover.Move(Velocity * Time.DeltaTime, out var collisionResult))
         {
@@ -127,11 +127,21 @@ public class Player : Component, IUpdatable
                     Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
 
                 if (fsm.CurrentState is Flying_1State state1)
-                    state1.slide();
+                    fsm.ChangeState<Sliding_1State>();
                 if (fsm.CurrentState is Flying_2State state2)
-                    state2.slide();
+                    fsm.ChangeState<Sliding_2State>();
                 if (fsm.CurrentState is Flying_3State state3)
-                    state3.slide();
+                    fsm.ChangeState<Sliding_3State>();
+            }
+            else
+            {
+
+                if (fsm.CurrentState is Sliding_1State state1)
+                    fsm.ChangeState<Flying_1State>();
+                if (fsm.CurrentState is Sliding_2State state2)
+                    fsm.ChangeState<Flying_2State>();
+                if (fsm.CurrentState is Sliding_3State state3)
+                    fsm.ChangeState<Flying_3State>();
             }
         }
     }
