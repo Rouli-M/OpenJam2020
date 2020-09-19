@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Nez;
 
-public class Camera : Component, IUpdatable
+public class CameraFollow : Component, IUpdatable
 {
     Player player;
     Vector2 offset;
@@ -15,10 +15,18 @@ public class Camera : Component, IUpdatable
         landscape = Entity.Scene.FindComponentOfType<Landscape>();
     }
 
+    float maxSpeed = 100;
+
     public void Update()
     {
         var newPosition = player.Transform.Position - offset;
         var delta = newPosition - Transform.Position;
+        var length = delta.Length();
+
+        var camera = Entity.Scene.Camera;
+        var normalized = Mathf.Clamp01(length / maxSpeed);
+
+        camera.RawZoom = Mathf.Lerp(1, .3f, normalized);
 
         Transform.Position = newPosition;
 

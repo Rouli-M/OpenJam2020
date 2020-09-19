@@ -11,6 +11,7 @@ namespace OpenJam2020
             base.Initialize();
             Window.Title = "Game";
             Window.AllowUserResizing = true;
+            Screen.SynchronizeWithVerticalRetrace = true;
             DebugConsole.ConsoleKey = Keys.F3;
             Scene = new BasicScene();
         }

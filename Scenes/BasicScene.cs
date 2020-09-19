@@ -9,6 +9,6 @@ public class BasicScene : Scene
         CreateEntity("player").AddComponent<Player>();
         CreateEntity("background").AddComponent<Landscape>();
 
-        Camera.Entity.AddComponent<Camera>();
+        Camera.Entity.AddComponent<CameraFollow>();
     }
 }
