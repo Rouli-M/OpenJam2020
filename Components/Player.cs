@@ -139,6 +139,7 @@ public class Player : Component, IUpdatable
 
     public bool IsThrowInputGiven()
     {
+        if (Game.IsPaused) return false;
         return Keyboard.GetState().IsKeyDown(Keys.Space);
     }
 }
