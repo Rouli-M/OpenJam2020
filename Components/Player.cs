@@ -11,7 +11,7 @@ using Nez.Textures;
 
 public class Player : Component, IUpdatable
 {
-    private const float gravity = 360f;
+    private const float gravity = 250f;
     private const float groundFriction = 300f;
 
     public Vector2 Velocity;
@@ -36,7 +36,7 @@ public class Player : Component, IUpdatable
         Velocity = new Vector2(0, 0);
 
         fsm = new StateMachine<Player>(this, new NotThrownState());
-        fsm.AddState(new FallenState());
+        fsm.AddState(new HatchState());
         fsm.AddState(new Flying_3State());
         fsm.AddState(new Flying_2State());
         fsm.AddState(new Flying_1State());
@@ -49,15 +49,17 @@ public class Player : Component, IUpdatable
 
         atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
         animator = Entity.AddComponent(new SpriteAnimator());
-        AddSingleTextureAnimation("3-slide");
+        AddSingleTextureAnimation("canon");
         AddSingleTextureAnimation("3-rise");
         AddSingleTextureAnimation("3-fall");
+        AddSingleTextureAnimation("3-slide");
         AddSingleTextureAnimation("3-charge_throw");
         AddSingleTextureAnimation("2-fly");
         AddSingleTextureAnimation("2-slide");
         AddSingleTextureAnimation("2-charge_throw");
         AddSingleTextureAnimation("1-fly");
         AddAtlasAnimation("1-slide");
+        AddAtlasAnimation("1-win");
     }
 
     public void Update()
@@ -68,6 +70,10 @@ public class Player : Component, IUpdatable
     {
         Time.TimeScale = TimeScale;
         Velocity.Y += gravity * Time.DeltaTime;
+
+        if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = MathF.Atan2(Velocity.Y, Velocity.X);
+        else Transform.Rotation = 0f;
+
         if (mover.Move(Velocity * Time.DeltaTime, out var collisionResult))
         {
             WorldObject other = collisionResult.Collider.Entity.GetComponent<WorldObject>();
@@ -88,8 +94,11 @@ public class Player : Component, IUpdatable
                 if (Velocity.Length() < groundFriction * Time.DeltaTime)
                 {
                     Velocity = Vector2.Zero;
-                    if (fsm.CurrentState is Flying_1State)
-                        fsm.ChangeState<FallenState>();
+                    if (fsm.CurrentState is Flying_1State || fsm.CurrentState is Sliding_1State)
+                    {
+                        fsm.ChangeState<HatchState>();
+                        animator.Play("1-win");
+                    }
                 }
                 else
                     Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
@@ -102,9 +111,6 @@ public class Player : Component, IUpdatable
                     state3.slide();
             }
         }
-
-        if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = (float)Math.Atan2((double)Velocity.Y, (double)Velocity.X);
-        else Transform.Rotation = 0f;
     }
     public void Throw(float velocity, float angle = MathF.PI / 4)
     {
