@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Nez;
@@ -19,6 +20,8 @@ public class Player : Component, IUpdatable
 
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
+
+    public SoundEffect charge_canon_sound, success;
 
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
@@ -62,6 +65,21 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_3State());
         fsm.AddState(new Throwing_2State());
 
+        charge_canon_sound = Core.Content.Load<SoundEffect>("charge_up");
+        success = Core.Content.Load<SoundEffect>("success");
+    }
+
+    internal bool IsThrowing()
+    {
+        return (fsm.CurrentState is Throwing_2State || fsm.CurrentState is Throwing_3State);
+    }
+
+    internal int DinoCount()
+    {
+        if (fsm.CurrentState is Flying_1State || fsm.CurrentState is Sliding_1State) return 1;
+        else if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Sliding_2State || fsm.CurrentState is Throwing_2State) return 2;
+        else if (fsm.CurrentState is Flying_3State || fsm.CurrentState is Sliding_3State || fsm.CurrentState is Throwing_3State) return 3;
+        return 0;
     }
 
     public void Update()
@@ -76,7 +94,7 @@ public class Player : Component, IUpdatable
         else Transform.Rotation = 0f;
 
         if (fsm.CurrentState is Sliding_1State) groundFriction = 100;
-        else groundFriction = 300f;
+        else groundFriction = 250f;
 
         if (mover.Move(Velocity * Time.DeltaTime, out var collisionResult))
         {
@@ -88,14 +106,12 @@ public class Player : Component, IUpdatable
                 Velocity = Vector2.Dot(tangent, Velocity) * tangent;
             }
             Ground ground = collisionResult.Collider.Entity.GetComponent<Ground>();
-            if (ground != null)
+            if (ground != null &&Vector2.Dot(collisionResult.Normal, Velocity) < 0)
             {
-                // gestion collision
-                if (Vector2.Dot(collisionResult.Normal, Velocity) < 0)
-                {
-                    Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
-                    Velocity = Vector2.Dot(tangent, Velocity) * tangent;
-                }
+
+                Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
+                Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+
 
                 // frottements
                 if (Velocity.Length() < groundFriction * Time.DeltaTime)
@@ -111,11 +127,21 @@ public class Player : Component, IUpdatable
                     Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
 
                 if (fsm.CurrentState is Flying_1State state1)
-                    state1.slide();
+                    fsm.ChangeState<Sliding_1State>();
                 if (fsm.CurrentState is Flying_2State state2)
-                    state2.slide();
+                    fsm.ChangeState<Sliding_2State>();
                 if (fsm.CurrentState is Flying_3State state3)
-                    state3.slide();
+                    fsm.ChangeState<Sliding_3State>();
+            }
+            else
+            {
+
+                if (fsm.CurrentState is Sliding_1State state1)
+                    fsm.ChangeState<Flying_1State>();
+                if (fsm.CurrentState is Sliding_2State state2)
+                    fsm.ChangeState<Flying_2State>();
+                if (fsm.CurrentState is Sliding_3State state3)
+                    fsm.ChangeState<Flying_3State>();
             }
         }
     }

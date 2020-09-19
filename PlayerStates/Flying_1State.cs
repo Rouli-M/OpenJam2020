@@ -14,8 +14,4 @@ public class Flying_1State : State<Player>
     {
         _context.PhysicalUpdate();
     }
-    public void slide()
-    {
-        _context.fsm.ChangeState<Sliding_1State>();
-    }
 }

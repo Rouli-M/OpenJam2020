@@ -25,8 +25,4 @@ public class Flying_3State : State<Player>
 
         _context.PhysicalUpdate();
     }
-    public void slide()
-    {
-        _context.fsm.ChangeState<Sliding_3State>();
-    }
 }

@@ -17,4 +17,9 @@ public class Sliding_2State : State<Player>
         if (_context.IsThrowInputGiven())
             _context.fsm.ChangeState<Throwing_2State>();
     }
+
+    internal void fly()
+    {
+        throw new NotImplementedException();
+    }
 }

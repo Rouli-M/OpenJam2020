@@ -18,8 +18,4 @@ public class Flying_2State : State<Player>
         if (_context.IsThrowInputGiven())
             _context.fsm.ChangeState<Throwing_2State>();
     }
-    public void slide()
-    {
-        _context.fsm.ChangeState<Sliding_2State>();
-    }
 }
