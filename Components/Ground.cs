@@ -16,7 +16,7 @@ public class Ground : Component
 
         Entity.AddComponent(new BoxCollider(0, 0, groundWidth, GROUND_HEIGHT));
         var basee = Entity.AddComponent(new SpriteRenderer(Entity.Scene.Content.Load<Texture2D>("root/base")));
-        basee.LocalOffset = new Vector2(-1194, -475);
+        basee.LocalOffset = new Vector2(-1194 + DESIGN_WIDTH/2, -475);
 
         Transform.Position = new Vector2(0, GROUND_HEIGHT / 2);
 

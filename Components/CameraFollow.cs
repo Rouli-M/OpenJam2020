@@ -4,9 +4,10 @@ using Nez;
 public class CameraFollow : Component, IUpdatable
 {
     Player player;
-    Vector2 offset;
+    Vector2 offset, previous_offset;
     Landscape landscape;
     Camera camera;
+    
 
     public override void OnAddedToEntity()
     {
@@ -19,7 +20,7 @@ public class CameraFollow : Component, IUpdatable
 
     public void Update()
     {
-        offset = new Vector2(0, .2f * Constants.DESIGN_HEIGHT) + new Vector2(0, -150) - 0f * player.Velocity;
+        offset = Vector2.Zero; // offset = (- 0.5f * (player.Velocity.Y + player.Entity.Position.Y > 0 ? new Vector2(player.Velocity.X, player.Entity.Position.Y) : player.Velocity)) *  0.3f + previous_offset * 0.8f;
         Vector2 newPosition = player.Transform.Position - offset;
 
         float length = player.Velocity.Length();
@@ -29,5 +30,7 @@ public class CameraFollow : Component, IUpdatable
         Transform.Position = newPosition * 0.1f + 0.9f * Transform.Position;
 
         landscape.Scroll(player.Velocity * Time.DeltaTime);
+
+        previous_offset = offset;
     }
 }

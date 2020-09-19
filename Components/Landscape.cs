@@ -6,7 +6,7 @@ public class Landscape : Component
     Layer[] layers;
 
     const int SKY_HEIGHT = Constants.DESIGN_HEIGHT * 50;
-    const int TREES_HEIGHT = Constants.DESIGN_HEIGHT * 10;
+    const int TREES_HEIGHT = Constants.DESIGN_HEIGHT * 5;
 
     struct Layer
     {
@@ -28,8 +28,8 @@ public class Landscape : Component
         var trees = AddTrees();
 
         layers = new[] {
-            new Layer(sky.Transform, .7f),
-            new Layer(trees.Transform, .8f)
+            new Layer(sky.Transform, .5f),
+            new Layer(trees.Transform, .75f)
         };
     }
 

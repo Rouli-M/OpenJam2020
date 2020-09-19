@@ -12,7 +12,7 @@ using Nez.Textures;
 public class Player : Component, IUpdatable
 {
     private const float gravity = 250f;
-    private const float groundFriction = 300f;
+    private float groundFriction = 300f;
 
     public Vector2 Velocity;
     Mover mover;
@@ -75,6 +75,9 @@ public class Player : Component, IUpdatable
         if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = MathF.Atan2(Velocity.Y, Velocity.X);
         else Transform.Rotation = 0f;
 
+        if (fsm.CurrentState is Sliding_1State) groundFriction = 100;
+        else groundFriction = 300f;
+
         if (mover.Move(Velocity * Time.DeltaTime, out var collisionResult))
         {
             WorldObject other = collisionResult.Collider.Entity.GetComponent<WorldObject>();
@@ -115,7 +118,7 @@ public class Player : Component, IUpdatable
     }
     public void Throw(float velocity, float angle = MathF.PI / 4)
     {
-        Velocity = 0.5f * Velocity + velocity * new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
+        this.Velocity = new Vector2(0.35f * this.Velocity.X, -0.35f * this.Velocity.X) + velocity * new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
     }
     private void AddAtlasAnimation(string name)
     {
