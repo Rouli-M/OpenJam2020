@@ -13,8 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin bundle
-/copy:bundle.png
+#begin bundle.png
 /copy:bundle.png
 
 #begin champi/champi1.png
@@ -269,6 +268,30 @@
 /processorParam:TextureFormat=Color
 /build:tall_champi/tall_champi4.png
 
+#begin textures/bg1.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/bg1.png
+
+#begin textures/bg1-top.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:textures/bg1-top.png
+
 #begin textures/ground.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -304,3 +327,4 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:textures/sky.png
+
