@@ -7,6 +7,6 @@ public class Sliding_1State : State<Player>
 {
     public override void Update(float deltaTime)
     {
-
+        _context.PhysicalUpdate();
     }
 }

@@ -12,12 +12,14 @@ using Nez.Textures;
 public class Player : Component, IUpdatable
 {
     private const float gravity = 360f;
+    private const float groundFriction = 300f;
 
     public Vector2 Velocity;
     Mover mover;
 
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
+    SpriteAtlas atlas;
 
     public override void OnAddedToEntity()
     {
@@ -41,13 +43,16 @@ public class Player : Component, IUpdatable
         fsm.AddState(new Throwing_3State());
         fsm.AddState(new Throwing_2State());
 
+        atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
         animator = Entity.AddComponent(new SpriteAnimator());
-        addSingleTextureAnimation("3-slide");
-        addSingleTextureAnimation("3-rise");
-        addSingleTextureAnimation("3-charge_throw");
-        addSingleTextureAnimation("2-fly");
-        addSingleTextureAnimation("2-charge_throw");
-        addSingleTextureAnimation("1-fly");
+        AddSingleTextureAnimation("3-slide");
+        AddSingleTextureAnimation("3-rise");
+        AddSingleTextureAnimation("3-fall");
+        AddSingleTextureAnimation("3-charge_throw");
+        AddSingleTextureAnimation("2-fly");
+        AddSingleTextureAnimation("2-slide");
+        AddSingleTextureAnimation("2-charge_throw");
+        AddSingleTextureAnimation("1-fly");
     }
 
     public void Update()
@@ -68,19 +73,26 @@ public class Player : Component, IUpdatable
             {
                 Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
                 Velocity = Vector2.Dot(tangent, Velocity) * tangent;
+                Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
+                if (fsm.CurrentState is Flying_1State state1)
+                    state1.slide();
+                if (fsm.CurrentState is Flying_2State state2)
+                    state2.slide();
+                if (fsm.CurrentState is Flying_3State state3)
+                    state3.slide();
             }
         }
     }
-    public void Throw(float velocity, float angle = (float) Math.PI / 4)
+    public void Throw(float velocity, float angle = (float)Math.PI / 4)
     {
         Velocity = velocity * new Vector2((float)Math.Cos(angle), -(float)Math.Sin(angle));
     }
-    private void addSingleTextureAnimation(string name)
+    private void AddSingleTextureAnimation(string name)
     {
-        var texture = Entity.Scene.Content.Load<Texture2D>("player/" + name);
-        var sprite = new Sprite(texture);
+        var sprite = atlas.GetSprite(name);
         animator.AddAnimation(name, new[] { sprite });
     }
+    
     public bool isThrowInputGiven()
     {
         return Keyboard.GetState().IsKeyDown(Keys.Space);
