@@ -88,15 +88,15 @@ public class Player : Component, IUpdatable
     }
     public void PhysicalUpdate()
     {
-        Velocity.Y += gravity * Time.DeltaTime;
+        Velocity.Y += gravity * Time.DeltaTime * Constants.speedMultiplier;
 
         if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = MathF.Atan2(Velocity.Y, Velocity.X);
         else Transform.Rotation = 0f;
 
-        if (fsm.CurrentState is Sliding_1State) groundFriction = 100;
+        if (fsm.CurrentState is Sliding_1State) groundFriction = 100f;
         else groundFriction = 250f;
 
-        if (mover.Move(Velocity * Time.DeltaTime, out var collisionResult))
+        if (mover.Move(Velocity * Time.DeltaTime * Constants.speedMultiplier, out var collisionResult))
         {
             WorldObject other = collisionResult.Collider.Entity.GetComponent<WorldObject>();
             if (other != null)
@@ -114,7 +114,7 @@ public class Player : Component, IUpdatable
 
 
                 // frottements
-                if (Velocity.Length() < groundFriction * Time.DeltaTime)
+                if (Velocity.Length() < groundFriction * Time.DeltaTime * Constants.speedMultiplier)
                 {
                     Velocity = Vector2.Zero;
                     if (fsm.CurrentState is Flying_1State || fsm.CurrentState is Sliding_1State)
@@ -124,7 +124,7 @@ public class Player : Component, IUpdatable
                     }
                 }
                 else
-                    Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity);
+                    Velocity -= groundFriction * Time.DeltaTime * Vector2.Normalize(Velocity) * Constants.speedMultiplier;
 
                 if (fsm.CurrentState is Flying_1State state1)
                     fsm.ChangeState<Sliding_1State>();
