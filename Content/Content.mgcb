@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin bounce.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:bounce.mp3
+
 #begin bundle.png
 /copy:bundle.png
 
@@ -21,6 +27,12 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:charge_up.wav
+
+#begin hold.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:hold.mp3
 
 #begin root/bg1.png
 /importer:TextureImporter
@@ -94,4 +106,10 @@
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
 /build:success.wav
+
+#begin throw1.mp3
+/importer:Mp3Importer
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:throw1.mp3
 

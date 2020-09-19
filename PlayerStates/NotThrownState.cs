@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework.Input;
-using Nez.AI.FSM;
+﻿using Nez.AI.FSM;
 
 public class NotThrownState : State<Player>
 {
@@ -15,14 +11,13 @@ public class NotThrownState : State<Player>
     {
         base.Begin();
         Game.State = GameState.Waiting;
+        _context.animator.Play("canon");
     }
 
     public override void Update(float deltaTime)
     {
         if (_context.IsThrowInputGiven())
-        {
             _context.fsm.ChangeState<ThrowingState>();
-        }
 
         if (clockwise)
         {

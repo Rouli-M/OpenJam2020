@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Nez.AI.FSM;
+﻿using Nez.AI.FSM;
 
 public class HatchState : State<Player>
 {
@@ -9,10 +6,10 @@ public class HatchState : State<Player>
     {
         base.Begin();
         Game.State = GameState.Over;
+
+        _context.animator.Play("1-win");
+        _context.success.Play();
     }
 
-    public override void Update(float deltaTime)
-    {
-
-    }
+    public override void Update(float deltaTime) { }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Nez.AI.FSM;
+﻿using Nez.AI.FSM;
 using OpenJam2020.Components;
 
 public class ThrowingState : State<Player>
@@ -11,6 +7,9 @@ public class ThrowingState : State<Player>
     {
         base.Begin();
         Game.State = GameState.Playing;
+
+        _context.animator.Play("canon_loaded");
+        _context.charge_canon_sound.Play();
     }
 
     public override void Update(float deltaTime)
@@ -23,7 +22,6 @@ public class ThrowingState : State<Player>
             var direction = _context.Throw(1200f, -_context.Entity.Rotation);
             _context.Transform.Position += direction * 600;
             _context.fsm.ChangeState<Flying_3State>();
-            _context.animator.Play("3-rise");
         }
     }
 }

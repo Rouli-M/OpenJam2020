@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
@@ -6,9 +7,10 @@ using System;
 
 class Bumper : WorldObject, ITriggerListener
 {
-    private const float minBumpVelocity = 500f;
-    private readonly Vector2 bumpDirection = new Vector2(0, -1);
-    private SpriteAnimator animator;
+    protected const float minBumpVelocity = 500f;
+    protected readonly Vector2 bumpDirection = new Vector2(0, -1);
+    protected SpriteAnimator animator;
+    protected SoundEffect bounce_sound;
 
     public override void OnAddedToEntity()
     {
@@ -17,8 +19,8 @@ class Bumper : WorldObject, ITriggerListener
 
         SpriteAtlas atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
-        animator.AddAnimation("idle", new[] { atlas.GetSprite("champi1") });
-        animator.AddAnimation("bump", atlas.GetAnimation("champi"));
+
+        bounce_sound = Core.Content.Load<SoundEffect>("bounce");
 
         base.OnAddedToEntity();
     }
@@ -27,6 +29,19 @@ class Bumper : WorldObject, ITriggerListener
     {
         var player = other.GetComponent<Player>();
         player.Velocity += MathF.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
+        
+        bounce_sound.Play();
+
+        if (!player.IsThrowing())
+        {
+            Debug.Log("Bumper bounced player : dino detected : " + player.DinoCount().ToString());
+            if (player.DinoCount() == 1) 
+                player.fsm.ChangeState<Flying_1State>();
+            else if (player.DinoCount() == 2) 
+                player.fsm.ChangeState<Flying_2State>();
+            else if (player.DinoCount() == 3) 
+                player.fsm.ChangeState<Flying_3State>();
+        }
         animator.Play("bump", SpriteAnimator.LoopMode.Once);
     }
 

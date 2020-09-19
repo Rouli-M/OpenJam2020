@@ -21,9 +21,14 @@ namespace OpenJam2020.Components
         {
             base.OnAddedToEntity();
 
-            if (dinoId == 0) AddRenderer("canon_empty");
-            if (dinoId == 3) AddRenderer("3-throw");
-            if (dinoId == 2) AddRenderer("2-throw");
+            if (dinoId == 0)
+            {
+                Entity.AddComponent(new SpriteAnimator())
+                    .AddAnimation("canon_shoot", Game.Atlas.GetAnimation("canon_shoot"))
+                    .Play("canon_shoot", SpriteAnimator.LoopMode.Once);
+            }
+            else if (dinoId == 3) AddRenderer("3-throw");
+            else if (dinoId == 2) AddRenderer("2-throw");
         }
 
         private void AddRenderer(string spriteName)

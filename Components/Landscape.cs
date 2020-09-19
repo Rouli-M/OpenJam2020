@@ -28,8 +28,8 @@ public class Landscape : Component
         var trees = AddTrees();
 
         layers = new[] {
-            new Layer(sky.Transform, .5f),
-            new Layer(trees.Transform, .75f)
+            new Layer(sky.Transform, .75f),
+            new Layer(trees.Transform, 0.1f)
         };
     }
 
@@ -64,7 +64,11 @@ public class Landscape : Component
     {
         if (layers == null) return;
 
-        layers[0].transform.Position += layers[0].multiplier * delta;
+        for (int i = 0; i < layers.Length; i++)
+        {   
+        layers[i].transform.Position += layers[i].multiplier * delta;
+
+        }
         //layers[0].transform.Position = layers[0].multiplier * PositionX;
     }
 }
