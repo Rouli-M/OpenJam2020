@@ -24,7 +24,7 @@ class Tower : WorldObject, ITriggerListener
     public void OnTriggerEnter(Collider other, Collider local)
     {
         var player = other.GetComponent<Player>();
-        player.Velocity.X /= 2;
+        player.Velocity.X *= 0.7f;
 
         animator.Play("break", SpriteAnimator.LoopMode.Once);
 

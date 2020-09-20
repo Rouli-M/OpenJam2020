@@ -13,16 +13,16 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(250 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(350 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricObject(xPosition);
             else if (xPosition < Constants.PREHISTORY_LENGHT_END + Constants.MIDDLEAGE_LENGHT)
-                generateMiddleAgeObject(xPosition);
+            {
+                if (Random.NextFloat(1f) < 0.95f) generateMiddleAgeObject(xPosition);
+            } 
             else
-                generateFutureObjects(xPosition);
-            
-                
+                generateFutureObjects(xPosition);      
         }
 
         if (Random.NextInt((int)((300 + 400) / probaMultiplier)) == 0)
@@ -82,7 +82,7 @@ class WorldGenerator : Component, IUpdatable
 
     void generateFutureObjects(float xPosition)
     {
-        int type = Random.NextInt(3);
+        int type = Random.NextInt(4);
         int yPosition;
         switch (type)
         {
@@ -97,6 +97,7 @@ class WorldGenerator : Component, IUpdatable
                 yPosition = -1000 - Random.NextInt(Constants.SKY_HEIGHT);
                 tryToAddComponent("moon", new Moon(), new Vector2(xPosition, yPosition), 500);
                 break;
+            case 3: goto case 0;
         }
     }
 
