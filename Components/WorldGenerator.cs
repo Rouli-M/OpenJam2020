@@ -13,7 +13,7 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(300 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(250 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricObject(xPosition);
@@ -58,7 +58,7 @@ class WorldGenerator : Component, IUpdatable
                 }
                 break;
             case 2:
-                yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
+                yPosition = -Constants.TREES_HEIGHT + 400 - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
                 tryToAddComponent("ptero", new Pterodactylus(), new Vector2(xPosition, yPosition));
                 break;
         }
@@ -90,7 +90,7 @@ class WorldGenerator : Component, IUpdatable
                 tryToAddComponent("booster", new Booster(), new Vector2(xPosition, -54));
                 break;
             case 1:
-                yPosition = 300 - Random.NextInt(1000);
+                yPosition = 300 - Random.NextInt(1300);
                 tryToAddComponent("tower", new Tower(), new Vector2(xPosition, yPosition), 500);
                 break;
             case 2:
