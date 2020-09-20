@@ -52,6 +52,9 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         else if (Game.IsPaused)
             Time.TimeScale = 0;
 
+        if (Input.IsKeyPressed(Keys.R))
+            Game.Restart();
+
         base.Update();
     }
 
