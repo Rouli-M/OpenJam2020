@@ -17,7 +17,7 @@ class WorldGenerator : Component, IUpdatable
             return;
         if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
         {
-            int type = Random.NextInt(2);
+            int type = Random.NextInt(3);
             int yPosition;
             switch (type) {
                 case 0:
@@ -34,6 +34,15 @@ class WorldGenerator : Component, IUpdatable
                     if (checkPosition(new Vector2(xPosition, yPosition - 517)))
                     {
                         var newComponent = Entity.Scene.CreateEntity("tall_bumper").AddComponent<TallBumper>();
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+                case 2:
+                    yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
+                    if (checkPosition(new Vector2(xPosition, yPosition), 500))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("ptero").AddComponent<Pterodactylus>();
                         newComponent.Transform.Position = new Vector2(xPosition, yPosition);
                         newComponent.Transform.Parent = this.Transform;
                     }
