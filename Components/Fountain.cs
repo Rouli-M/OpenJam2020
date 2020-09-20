@@ -9,6 +9,7 @@ class Fountain : WorldObject, ITriggerListener
     protected const float minBumpVelocity = 600f;
     protected readonly Vector2 bumpDirection = Vector2.Normalize(new Vector2(0f, -1));
     protected SpriteAnimator animator;
+    protected SoundEffect bounceSound;
 
     public override void OnAddedToEntity()
     {
@@ -19,6 +20,8 @@ class Fountain : WorldObject, ITriggerListener
         animator.AddAnimation("idle", Game.Atlas.GetAnimation("fountain"));
         animator.Play("idle");
 
+        bounceSound = Core.Content.Load<SoundEffect>("bounce");
+
         base.OnAddedToEntity();
     }
 
@@ -26,6 +29,8 @@ class Fountain : WorldObject, ITriggerListener
     {
         var player = other.GetComponent<Player>();
         player.Velocity += MathF.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
+
+        bounceSound.Play();
 
         if (!player.IsThrowing())
         {

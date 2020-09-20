@@ -13,7 +13,7 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(1000 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricObject(xPosition);
@@ -25,7 +25,7 @@ class WorldGenerator : Component, IUpdatable
                 
         }
 
-        if (Random.NextInt((int)(300 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)((300 + 400) / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricDecor(xPosition);
@@ -54,7 +54,7 @@ class WorldGenerator : Component, IUpdatable
                 yPosition = 455 - Random.NextInt(1000);
                 if (checkPosition(new Vector2(xPosition, yPosition - 517)))
                 {
-                    tryToAddComponent("bumper", new Bumper(), new Vector2(xPosition, yPosition), int.MaxValue);
+                    tryToAddComponent("tall_bumper", new TallBumper(), new Vector2(xPosition, yPosition), int.MaxValue);
                 }
                 break;
             case 2:
@@ -82,11 +82,16 @@ class WorldGenerator : Component, IUpdatable
 
     void generateFutureObjects(float xPosition)
     {
-        int type = Random.NextInt(1);
+        int type = Random.NextInt(2);
+        int yPosition;
         switch (type)
         {
             case 0:
-
+                tryToAddComponent("booster", new Booster(), new Vector2(xPosition, -54));
+                break;
+            case 1:
+                yPosition = 300 - Random.NextInt(1300);
+                tryToAddComponent("tower", new Tower(), new Vector2(xPosition, yPosition), 500);
                 break;
         }
     }
@@ -107,22 +112,34 @@ class WorldGenerator : Component, IUpdatable
 
     void generateMiddleAgeDecor(float xPosition)
     {
-        int type = Random.NextInt(1);
+        int type = Random.NextInt(4);
         switch (type)
         {
             case 0:
-
+                tryToAddComponent("maison", new Decor("maison"), new Vector2(xPosition, 0), 100);
+                break;
+            case 1:
+                tryToAddComponent("puit", new Decor("puit"), new Vector2(xPosition, 0), 100);
+                break;
+            case 2:
+                tryToAddComponent("tour", new Decor("tour"), new Vector2(xPosition, 0), 100);
+                break;
+            case 3:
+                tryToAddComponent("tonneau", new Decor("tonneau"), new Vector2(xPosition, 0), 100);
                 break;
         }
     }
 
     void generateFutureDecor(float xPosition)
     {
-        int type = Random.NextInt(1);
+        int type = Random.NextInt(2);
         switch (type)
         {
             case 0:
-
+                tryToAddComponent("future_maison", new Decor("future_home"), new Vector2(xPosition, 0), 100);
+                break;
+            case 1:
+                tryToAddComponent("panneau futur", new Decor("panneau_future"), new Vector2(xPosition, 0), 100);
                 break;
         }
     }
