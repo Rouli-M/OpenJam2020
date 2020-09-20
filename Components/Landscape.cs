@@ -22,13 +22,15 @@ public class Landscape : Component
         base.OnAddedToEntity();
 
         var sky = AddSky();
-        var forest = AddForest();
         var space = AddSpace();
+        var trees = AddTrees();
+        var wall = AddWall();
 
         layers = new[] {
             new Layer(space.Transform, .75f),
             new Layer(sky.Transform, .75f),
-            new Layer(forest.Transform, 0.1f)
+            new Layer(trees.Transform, .1f),
+            new Layer(wall.Transform, .1f)
         };
     }
 
@@ -58,18 +60,34 @@ public class Landscape : Component
         return entity;
     }
 
-    private Entity AddForest()
+    private Entity AddTrees()
     {
         var entity = Entity.Scene.CreateEntity("forest");
         entity.Parent = Transform;
         entity.Transform.Position = new Vector2(0, 300);
 
-        var forestRenderer = entity.AddTiledTexture("root/bg1", .9f, Constants.DESIGN_WIDTH * 100, Constants.FOREST_HEIGHT);
-        forestRenderer.OriginNormalized = new Vector2(.5f, 1);
+        var treesRenderer = entity.AddTiledTexture("root/bg1", .9f, Constants.PREHISTORY_LENGHT, Constants.TREES_HEIGHT);
+        treesRenderer.OriginNormalized = new Vector2(.5f, 1);
 
-        var topRenderer = entity.AddTiledTexture("root/bg1-top", .8f, Constants.DESIGN_WIDTH * 100);
+        var topRenderer = entity.AddTiledTexture("root/bg1-top", .8f, Constants.PREHISTORY_LENGHT);
         topRenderer.OriginNormalized = new Vector2(.5f, 1);
-        topRenderer.LocalOffset = new Vector2(0, -forestRenderer.Origin.Y);
+        topRenderer.LocalOffset = new Vector2(0, -treesRenderer.Origin.Y);
+
+        return entity;
+    }
+
+    private Entity AddWall()
+    {
+        var entity = Entity.Scene.CreateEntity("wall");
+        entity.Parent = Transform;
+        entity.Transform.Position = new Vector2(Constants.PREHISTORY_LENGHT_END, 300);
+
+        var renderer = entity.AddTiledTexture("root/bg2", .9f, Constants.MIDDLEAGE_LENGHT, Constants.TREES_HEIGHT);
+        renderer.OriginNormalized = new Vector2(0, 1);
+
+        var topRenderer = entity.AddTiledTexture("root/bg2_top", .8f, Constants.MIDDLEAGE_LENGHT);
+        topRenderer.OriginNormalized = new Vector2(0, 1);
+        topRenderer.LocalOffset = new Vector2(0, -renderer.Origin.Y);
 
         return entity;
     }

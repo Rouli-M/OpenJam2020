@@ -1,8 +1,6 @@
 ﻿using Nez;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Windows.Forms;
 
 class WorldGenerator : Component, IUpdatable
 {
@@ -39,7 +37,7 @@ class WorldGenerator : Component, IUpdatable
                     }
                     break;
                 case 2:
-                    yPosition = -Constants.FOREST_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.FOREST_HEIGHT));
+                    yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
                     if (checkPosition(new Vector2(xPosition, yPosition), 500))
                     {
                         var newComponent = Entity.Scene.CreateEntity("ptero").AddComponent<Pterodactylus>();
@@ -95,7 +93,7 @@ class WorldGenerator : Component, IUpdatable
         if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
         {
             int type = Random.NextInt(2);
-            int yPosition = -Constants.FOREST_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.FOREST_HEIGHT));
+            int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
             switch (type)
             {
                 case 0:
