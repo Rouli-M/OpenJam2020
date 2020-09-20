@@ -46,6 +46,7 @@ public class Game : Core
         Content.Load<SoundEffect>("throw1");
         Content.Load<SoundEffect>("bounce");
         Content.Load<SoundEffect>("hold");
+        Content.Load<SoundEffect>("stomp");
         base.LoadContent();
     }
 
