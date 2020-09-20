@@ -25,7 +25,7 @@ class Pterodactylus : WorldObject, ITriggerListener, IUpdatable
         var player = other.GetComponent<Player>();
         if (player != null)
         {
-            player.Velocity.Y = 0;
+            player.Velocity.Y /= 2;
             isTriggeredByPlayer = true;
         }
     }
@@ -42,7 +42,6 @@ class Pterodactylus : WorldObject, ITriggerListener, IUpdatable
         if (isTriggeredByPlayer && Game.player.Velocity.X < 2000)
         {
             Game.player.Velocity.X += 300 * Time.DeltaTime * Constants.speedMultiplier;
-             
         }
     }
 }
