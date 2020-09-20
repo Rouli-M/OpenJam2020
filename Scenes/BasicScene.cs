@@ -10,7 +10,7 @@ public class BasicScene : Scene
         CreateEntity("ground").AddComponent<Ground>();
         CreateEntity("player").AddComponent<Player>();
         CreateEntity("background").AddComponent<Landscape>();
-        // CreateEntity("world_generator").AddComponent<WorldGenerator>();
+        CreateEntity("world_generator").AddComponent<WorldGenerator>();
 
         Camera.Entity.AddComponent<CameraFollow>();
         Camera.Entity.AddComponent<CameraShake>();

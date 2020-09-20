@@ -17,8 +17,9 @@ class Bumper : WorldObject, ITriggerListener
         var collider = Entity.AddComponent(new BoxCollider(-110, -10, 220, 80));
         collider.IsTrigger = true;
 
-        SpriteAtlas atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
+        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("champi1") });
+        animator.AddAnimation("bump", Game.Atlas.GetAnimation("champi"));
 
         bounce_sound = Core.Content.Load<SoundEffect>("bounce");
 
