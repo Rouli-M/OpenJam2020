@@ -25,16 +25,19 @@ public class Game : Core
     protected override void Initialize()
     {
         base.Initialize();
+
         Window.Title = "Game";
         Window.AllowUserResizing = true;
         DebugConsole.ConsoleKey = Keys.F3;
+        
         Screen.SynchronizeWithVerticalRetrace = true;
         DefaultSamplerState = new SamplerState { Filter = TextureFilter.Linear };
-        Scene = new DefaultScene();
-        Atlas = Content.LoadSpriteAtlas("Content/bundle.atlas");
-
         TargetElapsedTime = TimeSpan.FromTicks(10000000 / 60);
         IsFixedTimeStep = true;
+        Game.PauseOnFocusLost = false;
+
+        Atlas = Content.LoadSpriteAtlas("Content/bundle.atlas");
+        Scene = new DefaultScene();
     }
     protected override void LoadContent()
     {

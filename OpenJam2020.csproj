@@ -28,13 +28,13 @@
 
   <ItemGroup>
     <Reference Include="Nez">
-      <HintPath>lib\Release\Nez.dll</HintPath>
+      <HintPath>lib\Nez.dll</HintPath>
     </Reference>
     <Reference Include="Nez.ImGui">
-      <HintPath>lib\Release\Nez.ImGui.dll</HintPath>
+      <HintPath>lib\Nez.ImGui.dll</HintPath>
     </Reference>
     <Reference Include="Nez.Persistence">
-      <HintPath>lib\Release\Nez.Persistence.dll</HintPath>
+      <HintPath>lib\Nez.Persistence.dll</HintPath>
     </Reference>
   </ItemGroup>
 

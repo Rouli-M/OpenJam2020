@@ -8,10 +8,7 @@ using Microsoft.Xna.Framework.Input;
 public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 {
     public const int ScreenSpaceRenderLayer = 999;
-    public UICanvas Canvas;
-
     ScreenSpaceRenderer _screenSpaceRenderer;
-    static ImGuiManager _imGuiManager;
 
     public Scene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
     {
@@ -27,15 +24,15 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         if (addExcludeRenderer)
             AddRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer));
 
-        var ui = CreateEntity("ui").AddComponent<Overlay>();
-
-        Game.PauseOnFocusLost = false;
+        CreateEntity("ui").AddComponent<Overlay>();
     }
 
     public override void Update()
     {
+#if DEBUG
         if (Input.IsKeyPressed(Keys.Tab))
             ToggleImGui();
+#endif
 
         if (!Game.Instance.IsActive)
             Game.IsPaused = true;
@@ -50,6 +47,9 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 
         base.Update();
     }
+
+#if DEBUG
+    static ImGuiManager _imGuiManager;
 
     [Console.Command("toggle-imgui", "Toggles the Dear ImGui renderer")]
     static void ToggleImGui()
@@ -66,6 +66,7 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
             _imGuiManager.Enabled = !_imGuiManager.Enabled;
         }
     }
+#endif
 
     private Nez.Scene _scene;
 
