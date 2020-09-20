@@ -21,6 +21,7 @@ public class Game : Core
     public static SpriteAtlas Atlas;
     public static GameState State;
     public static int Score;
+    public static float PlayerX;
 
     protected override void Initialize()
     {

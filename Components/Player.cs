@@ -85,6 +85,7 @@ public class Player : Component, IUpdatable
     public void Update()
     {
         fsm.Update(Time.DeltaTime);
+        Game.PlayerX = Entity.Transform.Position.X;
     }
 
     public void PhysicalUpdate()

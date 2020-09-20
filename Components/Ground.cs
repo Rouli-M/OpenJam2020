@@ -6,7 +6,6 @@ using static Constants;
 public class Ground : Component
 {
     const int GROUND_HEIGHT = 100;
-
     int groundWidth = DESIGN_WIDTH * 100;
 
     public override void OnAddedToEntity()
