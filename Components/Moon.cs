@@ -4,7 +4,7 @@ using Nez.Sprites;
 
 class Moon : Balloon
 {
-    protected const float moonRadius = 300;
+    protected const float moonRadius = 220;
 
     public override void OnAddedToEntity()
     {
@@ -15,13 +15,5 @@ class Moon : Balloon
         Entity.RemoveComponent<SpriteAnimator>();
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
         animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("lune") });
-
-        var collider = Entity.AddComponent(new CircleCollider(radius));
-        collider.IsTrigger = true;
-
-        animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
-        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("lune") });
-
-        bounceSound = Core.Content.Load<SoundEffect>("bounce");
     }
 }
