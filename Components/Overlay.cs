@@ -7,18 +7,16 @@ class SpriteOverlay
 {
     private Entity entity;
     private SpriteRenderer renderer;
-    private bool alwaysFollow;
     private Func<bool> enableWhen;
     private Func<bool> disableWhen;
 
-    public SpriteOverlay(Entity entity, string spriteName, Func<bool> enableWhen, Func<bool> disableWhen, bool alwaysFollow = false)
+    public SpriteOverlay(Entity entity, string spriteName, Func<bool> enableWhen, Func<bool> disableWhen)
     {
         this.entity = entity;
         this.enableWhen = enableWhen;
         this.disableWhen = disableWhen;
-        this.alwaysFollow = alwaysFollow;
-        renderer = new SpriteRenderer(Game.Atlas.GetSprite(spriteName));
-        entity.AddComponent(renderer);
+
+        renderer = entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite(spriteName))); ;
     }
 
     public void Update()
@@ -31,7 +29,7 @@ class SpriteOverlay
         else if (renderer.Enabled && disableWhen())
             renderer.Enabled = false;
 
-        if (alwaysFollow && renderer.Enabled)
+        if (renderer.Enabled)
             renderer.Transform.Position = entity.Scene.Camera.Position;
     }
 }
@@ -46,8 +44,8 @@ public class Overlay : Component, IUpdatable
 
         overlays = new[] {
             new SpriteOverlay(Entity, "waiting_overlay", () => Game.State == GameState.Waiting, () => Game.State != GameState.Waiting),
-            new SpriteOverlay(Entity, "pause_overlay", () => Game.IsPaused, () => !Game.IsPaused, true),
-            new SpriteOverlay(Entity, "gameover_overlay", () => Game.State == GameState.Over, () => Game.State != GameState.Over, true)
+            new SpriteOverlay(Entity, "pause_overlay", () => Game.IsPaused, () => !Game.IsPaused),
+            new SpriteOverlay(Entity, "gameover_overlay", () => Game.State == GameState.Over, () => Game.State != GameState.Over)
         };
     }
 
