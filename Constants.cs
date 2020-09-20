@@ -10,6 +10,6 @@ public static class Constants
 
     public const int PREHISTORY_LENGHT = DESIGN_WIDTH * 10;
     public const int PREHISTORY_LENGHT_END = PREHISTORY_LENGHT / 2;
-    public const int MIDDLEAGE_LENGHT = DESIGN_WIDTH * 100;
+    public const int MIDDLEAGE_LENGHT = DESIGN_WIDTH * 10;
     public const int FUTURE_LENGHT = DESIGN_WIDTH * 10;
 }
