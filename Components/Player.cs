@@ -20,6 +20,7 @@ public class Player : Component, IUpdatable
 
     public SoundEffect charge_canon_sound, success, throw_sound, hold_sound, stomp_sound;
     public ParticleEmitter flyingParticles;
+    public ParticleEmitter impactParticles;
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
     public readonly Point Box1 = new Point(100, 100);
@@ -71,34 +72,9 @@ public class Player : Component, IUpdatable
         hold_sound = Core.Content.Load<SoundEffect>("hold");
         stomp_sound = Core.Content.Load<SoundEffect>("stomp");
 
-        var config = new ParticleEmitterConfig();
-        config.Sprite = Game.Atlas.GetSprite("1-fly");
-        // config.StartColor = Color.Red;
-        config.MaxParticles = 10000;
-        config.EmissionRate = 20;
-        config.EmitterType = ParticleEmitterType.Gravity;
-        config.Duration = -1;
-        config.StartParticleSize = 100;
-        // config.BlendFuncSource = Microsoft.Xna.Framework.Graphics.Blend.SourceColor;
-        // config.BlendFuncDestination = Microsoft.Xna.Framework.Graphics.Blend.SourceColor;
-        // config.FinishParticleSize = 100;
-        // config.MinRadius = 0;
-        // config.MaxRadius = 100;
-        config.ParticleLifespan = .8f;
-        // config.Speed = 100;
-        // config.Gravity = new Vector2(10, -10);
-        // config.RotationStart = 0;
-        // config.RotationEnd = 180;
-        // config.MinRadius = 1000;
-        config.Speed = 30;
-        // config.TangentialAcceleration = 100;
-        config.AngleVariance = 145;
-        config.Angle = 180;
-        // config.RotatePerSecond = 2;
-        // config.Gravity = new Vector2(0, 1000);
-
-        flyingParticles = Entity.AddComponent(new ParticleEmitter(config, false));
-        flyingParticles.LayerDepth = .51f;
+        flyingParticles = Entity.AddComponent(new ParticleEmitter(Particles.MakeFlyingParticlesConfig(), false) { LayerDepth = .51f });
+        impactParticles = Entity.AddComponent(new ParticleEmitter(Particles.MakeImpatchParticlesConfig(), false) { LayerDepth = .51f });
+        impactParticles.LocalOffset = new Vector2(0, 150);
     }
 
     internal bool IsThrowing()
@@ -117,6 +93,9 @@ public class Player : Component, IUpdatable
     public void Update()
     {
         fsm.Update(Time.DeltaTime);
+
+        if (Input.IsKeyPressed(Keys.Y))
+            impactParticles.Emit(50);
     }
 
     public void PhysicalUpdate()
@@ -167,6 +146,7 @@ public class Player : Component, IUpdatable
                     fsm.ChangeState<Sliding_3State>();
                     Entity.Scene.Camera.GetComponent<CameraShake>().Shake(50, 0.9f, new Vector2(0, 1));
                     stomp_sound.Play();
+                    impactParticles.Emit(50);
                 }
             }
             else
