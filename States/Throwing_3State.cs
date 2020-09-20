@@ -18,9 +18,7 @@ public class Throwing_3State : State<Player>
         {
             _context.Throw(800f);
             _context.fsm.ChangeState<Flying_2State>();
-            _context.Entity.RemoveComponent<BoxCollider>();
-            var collider = _context.Entity.AddComponent(new BoxCollider(_context.Box2.X, _context.Box2.Y));
-            collider.ShouldColliderScaleAndRotateWithTransform = false;
+            _context.Entity.GetComponent<BoxCollider>().SetSize(_context.Box2.X, _context.Box2.Y);
             _context.Entity.Scene.CreateEntity("grand_dino", _context.Transform.Position).AddComponent(new DroppedDino(3));
         }
     }
