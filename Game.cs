@@ -30,7 +30,7 @@ public class Game : Core
         DebugConsole.ConsoleKey = Keys.F3;
         Screen.SynchronizeWithVerticalRetrace = true;
         DefaultSamplerState = new SamplerState { Filter = TextureFilter.Linear };
-        Scene = new BasicScene();
+        Scene = new DefaultScene();
         Atlas = Content.LoadSpriteAtlas("Content/bundle.atlas");
 
         TargetElapsedTime = TimeSpan.FromTicks(10000000 / 60);
@@ -51,6 +51,6 @@ public class Game : Core
         // Stop all tweens in case any demo scene started some up
         TweenManager.StopAllTweens();
         Core.GetGlobalManager<ImGuiManager>()?.SetEnabled(false);
-        Core.StartSceneTransition(new FadeTransition(() => Activator.CreateInstance(typeof(BasicScene)) as Nez.Scene));
+        Core.StartSceneTransition(new FadeTransition(() => Activator.CreateInstance(typeof(DefaultScene)) as Nez.Scene));
     }
 }

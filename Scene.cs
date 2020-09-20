@@ -1,11 +1,6 @@
-using System;
-using System.Linq;
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Nez;
-using Nez.UI;
-using Nez.Tweens;
 using Nez.ImGuiTools;
 using Console = Nez.Console;
 using Microsoft.Xna.Framework.Input;
@@ -15,8 +10,6 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     public const int ScreenSpaceRenderLayer = 999;
     public UICanvas Canvas;
 
-    Table _table;
-    List<Button> _sceneButtons = new List<Button>();
     ScreenSpaceRenderer _screenSpaceRenderer;
     static ImGuiManager _imGuiManager;
 
@@ -34,92 +27,13 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         if (addExcludeRenderer)
             AddRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer));
 
-        // Create our canvas and put it on the screen space render layer
-        Canvas = CreateEntity("ui").AddComponent(new UICanvas());
-        Canvas.AddComponent<Overlay>();
-        Canvas.IsFullScreen = true;
-        Canvas.RenderLayer = ScreenSpaceRenderLayer;
+        var ui = CreateEntity("ui").AddComponent<Overlay>();
 
         Game.PauseOnFocusLost = false;
-
-        SetupSceneSelector();
-    }
-
-    IEnumerable<Type> GetTypesWithSampleSceneAttribute()
-    {
-        var assembly = typeof(Scene).Assembly;
-        var scenes = assembly.GetTypes()
-            .Where(t => t.GetCustomAttributes(typeof(SceneAttribute), true).Length > 0)
-            .OrderBy(t =>
-                ((SceneAttribute)t.GetCustomAttributes(typeof(SceneAttribute), true)[0]).Order);
-
-        foreach (var s in scenes)
-            yield return s;
-    }
-
-    void SetupSceneSelector()
-    {
-        _table = Canvas.Stage.AddElement(new Table());
-        _table.SetFillParent(true).Right().Top();
-
-        var topButtonStyle = new TextButtonStyle(new PrimitiveDrawable(Color.Black, 10f),
-            new PrimitiveDrawable(Color.Yellow), new PrimitiveDrawable(Color.DarkSlateBlue))
-        {
-            DownFontColor = Color.Black
-        };
-
-        _table.Add(new TextButton("Toggle Scene List", topButtonStyle)).SetFillX().SetMinHeight(30)
-            .GetElement<Button>().OnClicked += OnToggleSceneListClicked;
-
-        _table.Row().SetPadTop(10);
-
-        var checkbox = _table.Add(new CheckBox("Debug Render", new CheckBoxStyle
-        {
-            CheckboxOn = new PrimitiveDrawable(30, Color.Green),
-            CheckboxOff = new PrimitiveDrawable(30, new Color(0x00, 0x3c, 0xe7, 0xff))
-        })).GetElement<CheckBox>();
-
-        checkbox.OnChanged += enabled => Core.DebugRenderEnabled = enabled;
-        checkbox.IsChecked = Core.DebugRenderEnabled;
-        _table.Row().SetPadTop(30);
-
-        var buttonStyle = new TextButtonStyle(new PrimitiveDrawable(new Color(78, 91, 98), 10f),
-            new PrimitiveDrawable(new Color(244, 23, 135)), new PrimitiveDrawable(new Color(168, 207, 115)))
-        {
-            DownFontColor = Color.Black
-        };
-
-        // Find every Scene with the SampleSceneAttribute and create a button for each one
-        foreach (var type in GetTypesWithSampleSceneAttribute())
-        {
-            foreach (var attr in type.GetCustomAttributes(true))
-            {
-                if (attr.GetType() == typeof(SceneAttribute))
-                {
-                    var sampleAttr = attr as SceneAttribute;
-                    var button = _table.Add(new TextButton(sampleAttr.ButtonName, buttonStyle)).SetFillX()
-                        .SetMinHeight(30).GetElement<TextButton>();
-
-                    button.OnClicked += _ => Game.Restart();
-
-                    _sceneButtons.Add(button);
-                    _table.Row().SetPadTop(10);
-                }
-            }
-        }
-    }
-
-    void OnToggleSceneListClicked(Button butt)
-    {
-        foreach (var button in _sceneButtons)
-            button.SetIsVisible(!button.IsVisible());
     }
 
     public override void Update()
     {
-        if (Input.GamePads.Length > 0 && Input.GamePads[0].IsButtonPressed(Buttons.Start))
-            ToggleImGui();
-
         if (Input.IsKeyPressed(Keys.Tab))
             ToggleImGui();
 
@@ -153,8 +67,6 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         }
     }
 
-    #region IFinalRenderDelegate
-
     private Nez.Scene _scene;
 
     public void OnAddedToScene(Nez.Scene scene) => _scene = scene;
@@ -172,20 +84,5 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         Graphics.Instance.Batcher.End();
 
         _screenSpaceRenderer.Render(_scene);
-    }
-
-    #endregion
-}
-
-[AttributeUsage(AttributeTargets.Class)]
-public class SceneAttribute : Attribute
-{
-    public string ButtonName;
-    public int Order;
-
-    public SceneAttribute(string buttonName, int order)
-    {
-        ButtonName = buttonName;
-        Order = order;
     }
 }

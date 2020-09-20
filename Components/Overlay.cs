@@ -16,7 +16,7 @@ class SpriteOverlay
         this.enableWhen = enableWhen;
         this.disableWhen = disableWhen;
 
-        renderer = entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite(spriteName))); ;
+        renderer = entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite(spriteName)));
     }
 
     public void Update()
