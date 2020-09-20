@@ -15,112 +15,144 @@ class WorldGenerator : Component, IUpdatable
             return;
         if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
         {
-            int type = Random.NextInt(3);
-            int yPosition;
-            switch (type) {
-                case 0:
-                    yPosition = -62;
-                    if (checkPosition(new Vector2(xPosition, yPosition)))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("bumper").AddComponent<Bumper>();
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-                case 1:
-                    yPosition = 455 - Random.NextInt(1000);
-                    if (checkPosition(new Vector2(xPosition, yPosition - 517)))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("tall_bumper").AddComponent<TallBumper>();
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-                case 2:
-                    yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
-                    if (checkPosition(new Vector2(xPosition, yPosition), 500))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("ptero").AddComponent<Pterodactylus>();
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-                /*case 0:
-                    yPosition = -62;
-                    if (checkPosition(new Vector2(xPosition, yPosition)))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("fountain").AddComponent<Fountain>();
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-                case 1:
-                    yPosition = - 500 - Random.NextInt(Constants.SKY_HEIGHT);
-                    if (checkPosition(new Vector2(xPosition, yPosition)))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("balloon").AddComponent<Balloon>();
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;*/
-            }
+            if (xPosition < Constants.PREHISTORY_LENGHT_END)
+                generatePrehistoricObject(xPosition);
+            else if (xPosition < Constants.PREHISTORY_LENGHT_END + Constants.MIDDLEAGE_LENGHT)
+                generateMiddleAgeObject(xPosition);
+            else
+                generateFutureObjects(xPosition);
+            
+                
         }
 
         if (Random.NextInt((int)(300 / probaMultiplier)) == 0)
         {
-            int type = Random.NextInt(2);
-            switch (type)
-            {
-                case 0:
-                    if (checkPosition(new Vector2(xPosition, 0)))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("arbre").AddComponent(new Decor("arbre1"));
-                        newComponent.Transform.Position = new Vector2(xPosition, 0);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-                case 1:
-                    if (checkPosition(new Vector2(xPosition, 0), 450))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("arbre").AddComponent(new Decor("arbre2"));
-                        newComponent.Transform.Position = new Vector2(xPosition, 0);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-            }
+            if (xPosition < Constants.PREHISTORY_LENGHT_END)
+                generatePrehistoricDecor(xPosition);
+            else if (xPosition < Constants.PREHISTORY_LENGHT_END + Constants.MIDDLEAGE_LENGHT)
+                generateMiddleAgeDecor(xPosition);
+            else
+                generateFutureDecor(xPosition);
         }
 
         if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
         {
-            int type = Random.NextInt(2);
-            int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
-            switch (type)
-            {
-                case 0:
-                    if (checkPosition(new Vector2(xPosition, yPosition), 450))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("nuage").AddComponent(new Decor("nuage1"));
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-                case 1:
-                    if (checkPosition(new Vector2(xPosition, yPosition), 450))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("nuage").AddComponent(new Decor("nuage2"));
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-                case 2:
-                    if (checkPosition(new Vector2(xPosition, yPosition), 450))
-                    {
-                        var newComponent = Entity.Scene.CreateEntity("nuage").AddComponent(new Decor("nuage3"));
-                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
-                        newComponent.Transform.Parent = this.Transform;
-                    }
-                    break;
-            }
+            generateSkyDecor(xPosition);
+        }
+    }
+
+    void generatePrehistoricObject(float xPosition)
+    {
+        int type = Random.NextInt(3);
+        int yPosition;
+        switch (type)
+        {
+            case 0:
+                tryToAddComponent("bumper", new Bumper(), new Vector2(xPosition, -62));
+                break;
+            case 1:
+                yPosition = 455 - Random.NextInt(1000);
+                if (checkPosition(new Vector2(xPosition, yPosition - 517)))
+                {
+                    tryToAddComponent("bumper", new Bumper(), new Vector2(xPosition, yPosition), int.MaxValue);
+                }
+                break;
+            case 2:
+                yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
+                tryToAddComponent("ptero", new Pterodactylus(), new Vector2(xPosition, yPosition));
+                break;
+        }
+    }
+
+    void generateMiddleAgeObject(float xPosition)
+    {
+        int type = Random.NextInt(2);
+        int yPosition;
+        switch (type)
+        {
+            case 0:
+                tryToAddComponent("fountain", new Fountain(), new Vector2(xPosition, -62));
+                break;
+            case 1:
+                yPosition = -500 - Random.NextInt(Constants.SKY_HEIGHT);
+                tryToAddComponent("balloon", new Balloon(), new Vector2(xPosition, yPosition), 500);
+                break;
+        }
+    }
+
+    void generateFutureObjects(float xPosition)
+    {
+        int type = Random.NextInt(1);
+        int yPosition;
+        switch (type)
+        {
+            case 0:
+
+                break;
+        }
+    }
+
+    void generatePrehistoricDecor(float xPosition)
+    {
+        int type = Random.NextInt(2);
+        switch (type)
+        {
+            case 0:
+                tryToAddComponent("arbre", new Decor("arbre1"), new Vector2(xPosition, 0));
+                break;
+            case 1:
+                tryToAddComponent("arbre", new Decor("arbre2"), new Vector2(xPosition, 0), 450);
+                break;
+        }
+    }
+
+    void generateMiddleAgeDecor(float xPosition)
+    {
+        int type = Random.NextInt(1);
+        switch (type)
+        {
+            case 0:
+
+                break;
+        }
+    }
+
+    void generateFutureDecor(float xPosition)
+    {
+        int type = Random.NextInt(1);
+        switch (type)
+        {
+            case 0:
+
+                break;
+        }
+    }
+
+    void generateSkyDecor(float xPosition)
+    {
+        int type = Random.NextInt(2);
+        int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
+        switch (type)
+        {
+            case 0:
+                tryToAddComponent("nuage", new Decor("nuage1"), new Vector2(xPosition, yPosition), 450);
+                break;
+            case 1:
+                tryToAddComponent("nuage", new Decor("nuage2"), new Vector2(xPosition, yPosition), 450);
+                break;
+            case 2:
+                tryToAddComponent("nuage", new Decor("nuage3"), new Vector2(xPosition, yPosition), 450);
+                break;
+        }
+    }
+
+    void tryToAddComponent(string name, Component component, Vector2 position, int width = 250)
+    {
+        if (checkPosition(position, width))
+        {
+            var newComponent = Entity.Scene.CreateEntity(name).AddComponent(component);
+            newComponent.Transform.Position = position;
+            newComponent.Transform.Parent = this.Transform;
         }
     }
 
