@@ -13,7 +13,7 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(700 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricObject(xPosition);
@@ -54,7 +54,7 @@ class WorldGenerator : Component, IUpdatable
                 yPosition = 455 - Random.NextInt(1000);
                 if (checkPosition(new Vector2(xPosition, yPosition - 517)))
                 {
-                    tryToAddComponent("bumper", new Bumper(), new Vector2(xPosition, yPosition), int.MaxValue);
+                    tryToAddComponent("tall_bumper", new TallBumper(), new Vector2(xPosition, yPosition), int.MaxValue);
                 }
                 break;
             case 2:
