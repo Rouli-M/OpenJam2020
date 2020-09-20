@@ -17,6 +17,7 @@ class Fountain : WorldObject, ITriggerListener
 
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
         animator.AddAnimation("idle", Game.Atlas.GetAnimation("fountain"));
+        animator.Play("idle");
 
         base.OnAddedToEntity();
     }
