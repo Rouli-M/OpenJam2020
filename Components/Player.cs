@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Nez;
 using Nez.AI.FSM;
 using Nez.Sprites;
@@ -13,6 +14,7 @@ public class Player : Component, IUpdatable
 
     public Vector2 Velocity;
     Mover mover;
+    public Song music;
 
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
@@ -69,6 +71,8 @@ public class Player : Component, IUpdatable
         success = Core.Content.Load<SoundEffect>("success");
         hold_sound = Core.Content.Load<SoundEffect>("hold");
         stomp_sound = Core.Content.Load<SoundEffect>("stomp");
+
+        music = Core.Content.Load<Song>("Anttis instrumentals - Back in the background");
     }
 
     internal bool IsThrowing()

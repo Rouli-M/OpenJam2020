@@ -1,4 +1,5 @@
-﻿using Nez.AI.FSM;
+﻿using Microsoft.Xna.Framework.Media;
+using Nez.AI.FSM;
 using OpenJam2020.Components;
 
 public class ThrowingState : State<Player>
@@ -18,6 +19,7 @@ public class ThrowingState : State<Player>
         {
             var entity = _context.Entity.Scene.CreateEntity("canon_empty", _context.Transform.Position).AddComponent(new DroppedDino(0));
             entity.Transform.Rotation = _context.Entity.Rotation;
+            MediaPlayer.Play(_context.music);
 
             var direction = _context.Throw(1200f, -_context.Entity.Rotation);
             _context.Transform.Position += direction * 600;
