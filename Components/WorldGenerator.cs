@@ -68,7 +68,7 @@ class WorldGenerator : Component, IUpdatable
         if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
         {
             int type = Random.NextInt(2);
-            int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(Constants.SKY_HEIGHT - Constants.TREES_HEIGHT);
+            int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
             switch (type)
             {
                 case 0:
