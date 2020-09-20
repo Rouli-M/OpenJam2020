@@ -90,7 +90,7 @@ class WorldGenerator : Component, IUpdatable
                 tryToAddComponent("booster", new Booster(), new Vector2(xPosition, -54));
                 break;
             case 1:
-                yPosition = 500 - Random.NextInt(1000);
+                yPosition = 300 - Random.NextInt(1300);
                 tryToAddComponent("tower", new Tower(), new Vector2(xPosition, yPosition), 500);
                 break;
         }
