@@ -25,7 +25,7 @@ class WorldGenerator : Component, IUpdatable
                 
         }
 
-        if (Random.NextInt((int)(300 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)((300 + 400) / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricDecor(xPosition);
@@ -108,11 +108,20 @@ class WorldGenerator : Component, IUpdatable
 
     void generateMiddleAgeDecor(float xPosition)
     {
-        int type = Random.NextInt(1);
+        int type = Random.NextInt(4);
         switch (type)
         {
             case 0:
-
+                tryToAddComponent("maison", new Decor("maison"), new Vector2(xPosition, 0), 100);
+                break;
+            case 1:
+                tryToAddComponent("puit", new Decor("puit"), new Vector2(xPosition, 0), 100);
+                break;
+            case 2:
+                tryToAddComponent("tour", new Decor("tour"), new Vector2(xPosition, 0), 100);
+                break;
+            case 3:
+                tryToAddComponent("tonneau", new Decor("tonneau"), new Vector2(xPosition, 0), 100);
                 break;
         }
     }
