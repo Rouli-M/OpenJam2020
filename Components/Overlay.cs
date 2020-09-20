@@ -45,6 +45,7 @@ public class Overlay : Component, IUpdatable
         overlays = new[] {
             new SpriteOverlay(Entity, "waiting_overlay", () => Game.State == GameState.Waiting, () => Game.State != GameState.Waiting),
             new SpriteOverlay(Entity, "pause_overlay", () => Game.IsPaused, () => !Game.IsPaused),
+            new SpriteOverlay(Entity, "hold_space_overlay", () => Game.player.DinoCount()>1 && !Game.player.IsThrowing(), () => Game.player.IsThrowing() || Game.player.DinoCount() == 1),
             new SpriteOverlay(Entity, "gameover_overlay", () => Game.State == GameState.Over, () => Game.State != GameState.Over)
         };
     }

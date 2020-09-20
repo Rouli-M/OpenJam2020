@@ -27,6 +27,8 @@ public class Player : Component, IUpdatable
     {
         base.OnAddedToEntity();
 
+        Game.player = this;
+
         var collider = Entity.AddComponent(new BoxCollider(Box3.X, Box3.Y));
         collider.ShouldColliderScaleAndRotateWithTransform = false;
         mover = Entity.AddComponent(new Mover());
@@ -71,7 +73,7 @@ public class Player : Component, IUpdatable
 
     internal bool IsThrowing()
     {
-        return (fsm.CurrentState is Throwing_2State || fsm.CurrentState is Throwing_3State);
+        return (fsm.CurrentState is Throwing_2State || fsm.CurrentState is Throwing_3State || fsm.CurrentState is ThrowingState || fsm.CurrentState is NotThrownState);
     }
 
     internal int DinoCount()

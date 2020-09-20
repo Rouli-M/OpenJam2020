@@ -178,6 +178,18 @@
 /processorParam:TextureFormat=Color
 /build:root/ground3_top.png
 
+#begin root/hold_space_overlay.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/hold_space_overlay.png
+
 #begin root/nuage1.png
 /importer:TextureImporter
 /processor:TextureProcessor
