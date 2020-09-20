@@ -73,6 +73,7 @@ public class Player : Component, IUpdatable
         stomp_sound = Core.Content.Load<SoundEffect>("stomp");
 
         music = Core.Content.Load<Song>("Anttis instrumentals - Back in the background");
+        MediaPlayer.Stop();
     }
 
     internal bool IsThrowing()
