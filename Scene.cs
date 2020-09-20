@@ -9,6 +9,7 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 {
     public const int ScreenSpaceRenderLayer = 999;
     ScreenSpaceRenderer _screenSpaceRenderer;
+    NezSpriteFont rouliFont;
 
     public Scene(bool addExcludeRenderer = true, bool needsFullRenderSizeForUi = false)
     {
@@ -25,6 +26,12 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
             AddRenderer(new RenderLayerExcludeRenderer(0, ScreenSpaceRenderLayer));
 
         CreateEntity("ui").AddComponent<Overlay>();
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        rouliFont = new NezSpriteFont(Content.Load<SpriteFont>("RouliXL"));
     }
 
     public override void Update()
@@ -84,6 +91,20 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         Graphics.Instance.Batcher.Draw(source, finalRenderDestinationRect, Color.White);
         Graphics.Instance.Batcher.End();
 
+        Graphics.Instance.Batcher.Begin();
+        RenderScore();
+        Graphics.Instance.Batcher.End();
+
         _screenSpaceRenderer.Render(_scene);
+    }
+
+    private void RenderScore()
+    {
+        var score = $"{Game.Score}m";
+
+        if (Game.State == GameState.Over)
+            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(750, 30), Color.Black, 0, Vector2.Zero, .4f, SpriteEffects.None, 0);
+        else
+            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(10, 5), Color.Black, 0, Vector2.Zero, .4f, SpriteEffects.None, 0);
     }
 }
