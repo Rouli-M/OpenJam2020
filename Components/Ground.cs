@@ -19,7 +19,12 @@ public class Ground : Component
 
         Transform.Position = new Vector2(0, 0);
 
-        Entity.AddTiledTexture("root/ground", .2f, groundWidth, GROUND_HEIGHT * 100);
-        Entity.AddTiledTexture("root/ground_top", .1f, groundWidth);
+        Entity.AddTiledTexture("root/ground", .2f, Constants.PREHISTORY_LENGHT, GROUND_HEIGHT * 100);
+        Entity.AddTiledTexture("root/ground_top", .1f, Constants.PREHISTORY_LENGHT);
+        
+        var a = Entity.AddTiledTexture("root/ground2", .2f, Constants.MIDDLEAGE_LENGHT, GROUND_HEIGHT * 100);
+        a.LocalOffset = new Vector2(Constants.PREHISTORY_LENGHT, 0);
+        var b = Entity.AddTiledTexture("root/ground2_top", .1f, Constants.MIDDLEAGE_LENGHT);
+        b.LocalOffset = new Vector2(Constants.PREHISTORY_LENGHT, 0);
     }
 }

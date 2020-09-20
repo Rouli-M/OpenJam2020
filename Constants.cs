@@ -7,4 +7,8 @@ public static class Constants
     public const int SPACE_HEIGHT = Constants.DESIGN_HEIGHT * 8;//8
     public const int SKY_HEIGHT = Constants.DESIGN_HEIGHT * 3 + 400;//5
     public const int TREES_HEIGHT = 720 * 2 + 400;//4
+
+    public const int PREHISTORY_LENGHT = DESIGN_WIDTH * 10;
+    public const int MIDDLEAGE_LENGHT = DESIGN_WIDTH * 100;
+    public const int FUTURE_LENGHT = DESIGN_WIDTH * 10;
 }
