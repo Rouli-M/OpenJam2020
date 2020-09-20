@@ -17,7 +17,7 @@ public class Player : Component, IUpdatable
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
 
-    public SoundEffect charge_canon_sound, success, throw_sound, hold_sound;
+    public SoundEffect charge_canon_sound, success, throw_sound, hold_sound, stomp_sound;
 
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
@@ -66,6 +66,7 @@ public class Player : Component, IUpdatable
         throw_sound = Core.Content.Load<SoundEffect>("throw1");
         success = Core.Content.Load<SoundEffect>("success");
         hold_sound = Core.Content.Load<SoundEffect>("hold");
+        stomp_sound = Core.Content.Load<SoundEffect>("stomp");
     }
 
     internal bool IsThrowing()
@@ -134,6 +135,7 @@ public class Player : Component, IUpdatable
                 {
                     fsm.ChangeState<Sliding_3State>();
                     Entity.Scene.Camera.GetComponent<CameraShake>().Shake(50, 0.9f, new Vector2(0, 1));
+                    stomp_sound.Play();
                 }
             }
             else

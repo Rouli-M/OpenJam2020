@@ -13,7 +13,8 @@ public class HatchState : State<Player>
         _context.success.Play();
     }
 
-    public override void Update(float deltaTime) { 
+    public override void Update(float deltaTime)
+    {
         if (Input.IsKeyPressed(Keys.R))
             Game.Restart();
     }
