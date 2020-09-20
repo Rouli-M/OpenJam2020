@@ -1,5 +1,4 @@
-﻿using System;
-using Nez.AI.FSM;
+﻿using Nez.AI.FSM;
 
 public class Sliding_2State : State<Player>
 {
@@ -7,17 +6,14 @@ public class Sliding_2State : State<Player>
     {
         base.Begin();
         _context.animator.Play("2-slide");
+        _context.flyingParticles.PauseEmission();
     }
+
     public override void Update(float deltaTime)
     {
         _context.PhysicalUpdate();
 
         if (_context.IsThrowInputGiven())
             _context.fsm.ChangeState<Throwing_2State>();
-    }
-
-    internal void fly()
-    {
-        throw new NotImplementedException();
     }
 }

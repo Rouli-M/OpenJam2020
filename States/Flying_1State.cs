@@ -6,6 +6,7 @@ public class Flying_1State : State<Player>
     {
         base.Begin();
         _context.animator.Play("1-fly");
+        _context.flyingParticles.Play();
     }
     
     public override void Update(float deltaTime)

@@ -6,6 +6,7 @@ public class Sliding_1State : State<Player>
     {
         base.Begin();
         _context.animator.Play("1-slide");
+        _context.flyingParticles.PauseEmission();
     }
 
     public override void Update(float deltaTime)

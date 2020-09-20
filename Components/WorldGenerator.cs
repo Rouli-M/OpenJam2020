@@ -83,7 +83,6 @@ class WorldGenerator : Component, IUpdatable
     void generateFutureObjects(float xPosition)
     {
         int type = Random.NextInt(1);
-        int yPosition;
         switch (type)
         {
             case 0:

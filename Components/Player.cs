@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
 using Nez;
 using Nez.AI.FSM;
+using Nez.Particles;
 using Nez.Sprites;
 
 public class Player : Component, IUpdatable
@@ -18,7 +19,7 @@ public class Player : Component, IUpdatable
     public SpriteAnimator animator;
 
     public SoundEffect charge_canon_sound, success, throw_sound, hold_sound, stomp_sound;
-
+    public ParticleEmitter flyingParticles;
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
     public readonly Point Box1 = new Point(100, 100);
@@ -69,6 +70,35 @@ public class Player : Component, IUpdatable
         success = Core.Content.Load<SoundEffect>("success");
         hold_sound = Core.Content.Load<SoundEffect>("hold");
         stomp_sound = Core.Content.Load<SoundEffect>("stomp");
+
+        var config = new ParticleEmitterConfig();
+        config.Sprite = Game.Atlas.GetSprite("1-fly");
+        // config.StartColor = Color.Red;
+        config.MaxParticles = 10000;
+        config.EmissionRate = 20;
+        config.EmitterType = ParticleEmitterType.Gravity;
+        config.Duration = -1;
+        config.StartParticleSize = 100;
+        // config.BlendFuncSource = Microsoft.Xna.Framework.Graphics.Blend.SourceColor;
+        // config.BlendFuncDestination = Microsoft.Xna.Framework.Graphics.Blend.SourceColor;
+        // config.FinishParticleSize = 100;
+        // config.MinRadius = 0;
+        // config.MaxRadius = 100;
+        config.ParticleLifespan = .8f;
+        // config.Speed = 100;
+        // config.Gravity = new Vector2(10, -10);
+        // config.RotationStart = 0;
+        // config.RotationEnd = 180;
+        // config.MinRadius = 1000;
+        config.Speed = 30;
+        // config.TangentialAcceleration = 100;
+        config.AngleVariance = 145;
+        config.Angle = 180;
+        // config.RotatePerSecond = 2;
+        // config.Gravity = new Vector2(0, 1000);
+
+        flyingParticles = Entity.AddComponent(new ParticleEmitter(config, false));
+        flyingParticles.LayerDepth = .51f;
     }
 
     internal bool IsThrowing()
@@ -115,7 +145,6 @@ public class Player : Component, IUpdatable
                 Vector2 tangent = new Vector2(collisionResult.Normal.Y, -collisionResult.Normal.X);
                 Velocity = Vector2.Dot(tangent, Velocity) * tangent;
 
-
                 // frottements
                 if (Velocity.Length() < groundFriction * Time.DeltaTime * Constants.speedMultiplier)
                 {
@@ -142,7 +171,6 @@ public class Player : Component, IUpdatable
             }
             else
             {
-
                 if (fsm.CurrentState is Sliding_1State)
                     fsm.ChangeState<Flying_1State>();
                 if (fsm.CurrentState is Sliding_2State)
