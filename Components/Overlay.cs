@@ -21,16 +21,17 @@ class SpriteOverlay
 
     public void Update()
     {
+
         if (!renderer.Enabled && enableWhen())
-        {
             renderer.Enabled = true;
-            renderer.Transform.Scale = (1f / entity.Scene.Camera.RawZoom) * Vector2.One;
-        }
         else if (renderer.Enabled && disableWhen())
             renderer.Enabled = false;
 
         if (renderer.Enabled)
+        {
             renderer.Transform.Position = entity.Scene.Camera.Position;
+            renderer.Transform.Scale = (1f / entity.Scene.Camera.RawZoom) * Vector2.One;
+        }
     }
 }
 
