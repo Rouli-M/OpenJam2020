@@ -6,8 +6,8 @@ using System;
 
 class Bumper : WorldObject, ITriggerListener
 {
-    protected const float minBumpVelocity = 500f;
-    protected readonly Vector2 bumpDirection = new Vector2(0, -1);
+    protected const float minBumpVelocity = 600f;
+    protected readonly Vector2 bumpDirection = Vector2.Normalize(new Vector2(0f, -1));
     protected SpriteAnimator animator;
     protected SoundEffect bounceSound;
 
