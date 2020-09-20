@@ -82,7 +82,7 @@ class WorldGenerator : Component, IUpdatable
 
     void generateFutureObjects(float xPosition)
     {
-        int type = Random.NextInt(2);
+        int type = Random.NextInt(3);
         int yPosition;
         switch (type)
         {
@@ -92,6 +92,10 @@ class WorldGenerator : Component, IUpdatable
             case 1:
                 yPosition = 300 - Random.NextInt(1300);
                 tryToAddComponent("tower", new Tower(), new Vector2(xPosition, yPosition), 500);
+                break;
+            case 2:
+                yPosition = -1000 - Random.NextInt(Constants.SKY_HEIGHT);
+                tryToAddComponent("moon", new Moon(), new Vector2(xPosition, yPosition), 500);
                 break;
         }
     }
