@@ -11,9 +11,11 @@ class WorldGenerator : Component, IUpdatable
         base.OnAddedToEntity();
     }
 
-    public void generate(float xPosition)
+    public void generate(float xPosition, float probaMultiplier)
     {
-        if (Time.DeltaTime > 0 && Random.NextInt((int)(1/Time.DeltaTime)) == 0)
+        if (probaMultiplier <= 0)
+            return;
+        if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
         {
             int type = Random.NextInt(2);
             int yPosition;
@@ -39,7 +41,7 @@ class WorldGenerator : Component, IUpdatable
             }
         }
 
-        if (Random.NextInt(16) == 0)
+        if (Random.NextInt((int)(300 / probaMultiplier)) == 0)
         {
             int type = Random.NextInt(2);
             switch (type)
@@ -63,7 +65,7 @@ class WorldGenerator : Component, IUpdatable
             }
         }
 
-        if (Random.NextInt(32) == 0)
+        if (Random.NextInt((int)(500 / probaMultiplier)) == 0)
         {
             int type = Random.NextInt(2);
             int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(Constants.SKY_HEIGHT - Constants.TREES_HEIGHT);
@@ -110,6 +112,7 @@ class WorldGenerator : Component, IUpdatable
 
     public void Update()
     {
-        generate(Entity.Scene.FindComponentOfType<Player>().Transform.Position.X + 4500);
+        var player = Entity.Scene.FindComponentOfType<Player>();
+        generate(player.Transform.Position.X + 4500, player.Velocity.X * Time.DeltaTime);
     }
 }
