@@ -27,7 +27,7 @@ public class Game : Core
     {
         base.Initialize();
 
-        Window.Title = "Game";
+        Window.Title = "throw throw dino dino";
         Window.AllowUserResizing = true;
         DebugConsole.ConsoleKey = Keys.F3;
 
