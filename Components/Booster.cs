@@ -13,9 +13,8 @@ class Booster : Pterodactylus
 
         Entity.RemoveComponent<SpriteAnimator>();
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
-        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("ground_booster") });
-        //animator.AddAnimation("idle", Game.Atlas.GetAnimation("ground_booster"));
-        //animator.Play("idle");
+        animator.AddAnimation("idle", Game.Atlas.GetAnimation("boost"));
+        animator.Play("idle");
     }
 
     public new void Update()
