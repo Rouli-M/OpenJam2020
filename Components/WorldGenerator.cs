@@ -39,7 +39,7 @@ class WorldGenerator : Component, IUpdatable
                     }
                     break;
                 case 2:
-                    yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
+                    yPosition = -Constants.FOREST_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.FOREST_HEIGHT));
                     if (checkPosition(new Vector2(xPosition, yPosition), 500))
                     {
                         var newComponent = Entity.Scene.CreateEntity("ptero").AddComponent<Pterodactylus>();
@@ -47,6 +47,24 @@ class WorldGenerator : Component, IUpdatable
                         newComponent.Transform.Parent = this.Transform;
                     }
                     break;
+                /*case 0:
+                    yPosition = -62;
+                    if (checkPosition(new Vector2(xPosition, yPosition)))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("fountain").AddComponent<Fountain>();
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+                case 1:
+                    yPosition = - 500 - Random.NextInt(Constants.SKY_HEIGHT);
+                    if (checkPosition(new Vector2(xPosition, yPosition)))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("balloon").AddComponent<Balloon>();
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;*/
             }
         }
 

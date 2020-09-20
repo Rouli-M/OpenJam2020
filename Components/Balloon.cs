@@ -2,19 +2,23 @@
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.Sprites;
+using System;
 
 class Balloon : WorldObject, ITriggerListener
 {
+    protected const float radius = 150;
+    protected const float minXVelocity = 100;
+
     protected SpriteAnimator animator;
     protected SoundEffect bounceSound;
 
     public override void OnAddedToEntity()
     {
-        var collider = Entity.AddComponent(new BoxCollider(-110, -10, 220, 80));
+        var collider = Entity.AddComponent(new CircleCollider(radius));
         collider.IsTrigger = true;
 
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
-        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("mongolfiere") });
+        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("montgolfiere") });
 
         bounceSound = Core.Content.Load<SoundEffect>("bounce");
 
@@ -23,12 +27,18 @@ class Balloon : WorldObject, ITriggerListener
     
     public void OnTriggerEnter(Collider other, Collider local)
     {
+        Vector2 distance = Transform.Position - other.Transform.Position;
         var player = other.GetComponent<Player>();
-        //player.Velocity += ;
+
+        Vector2 bounceForce = -2 * Vector2.Dot(player.Velocity, Vector2.Normalize(distance)) * Vector2.Normalize(distance);
+
+        player.Velocity += bounceForce;
+        if (player.Velocity.X < minXVelocity)
+        {
+            player.Velocity.X = MathF.Max(-player.Velocity.X, minXVelocity);
+        }
 
         bounceSound.Play();
-
-        animator.Play("bump", SpriteAnimator.LoopMode.Once);
     }
 
     public void OnTriggerExit(Collider other, Collider local)
