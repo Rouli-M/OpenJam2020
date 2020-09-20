@@ -19,9 +19,12 @@ class Booster : Pterodactylus
 
     public new void Update()
     {
-        if (isTriggeredByPlayer && Game.player.Velocity.X < 2000)
+        if (isTriggeredByPlayer)
         {
-            Game.player.Velocity.X += 1000 * Time.DeltaTime * Constants.speedMultiplier;
+            /*
+            if (Game.player.Velocity.X < 80000) Game.player.Velocity.X = 80000;
+            Game.player.Velocity.X += 100000 * Time.DeltaTime * Constants.speedMultiplier;
+            */
         }
     }
 }
