@@ -14,10 +14,9 @@ class TallBumper : Bumper
         Entity.GetComponent<BoxCollider>().SetSize(220, 40);
 
         Entity.RemoveComponent<SpriteAnimator>();
-        animator = new SpriteAnimator();
+        animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
         animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("tall_champi1") });
         animator.AddAnimation("bump", Game.Atlas.GetAnimation("tall_champi"));
-        Entity.AddComponent(animator);
 
         bounce_sound = Core.Content.Load<SoundEffect>("bounce");
 

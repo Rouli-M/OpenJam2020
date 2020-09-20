@@ -1,6 +1,8 @@
 ﻿using Nez;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Windows.Forms;
 
 class WorldGenerator : Component, IUpdatable
 {
@@ -36,14 +38,38 @@ class WorldGenerator : Component, IUpdatable
                     break;
             }
         }
+
+        if (Random.NextInt(16) == 0)
+        {
+            int type = Random.NextInt(2);
+            switch (type)
+            {
+                case 0:
+                    if (checkPosition(new Vector2(xPosition, 0)))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("arbre").AddComponent(new Decor("arbre1"));
+                        newComponent.Transform.Position = new Vector2(xPosition, 0);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+                case 1:
+                    if (checkPosition(new Vector2(xPosition, 0), 450))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("arbre").AddComponent(new Decor("arbre2"));
+                        newComponent.Transform.Position = new Vector2(xPosition, 0);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+            }
+        }
     }
 
-    private bool checkPosition(Vector2 position)
+    private bool checkPosition(Vector2 position, int width = 250)
     {
         List<WorldObject> worldObjects = Entity.Scene.FindComponentsOfType<WorldObject>();
         foreach (var o in worldObjects)
         {
-            if (Vector2.Distance(o.Transform.Position, position) < 250)
+            if (Vector2.Distance(o.Transform.Position, position) < width)
                 return false;
         }
         return true;
