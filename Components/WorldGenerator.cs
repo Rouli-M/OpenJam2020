@@ -54,7 +54,7 @@ class WorldGenerator : Component, IUpdatable
                 yPosition = 455 - Random.NextInt(1000);
                 if (checkPosition(new Vector2(xPosition, yPosition - 517)))
                 {
-                    tryToAddComponent("tall_bumper", new TallBumper(), new Vector2(xPosition, yPosition), int.MaxValue);
+                    tryToAddComponent("tall_bumper", new TallBumper(), new Vector2(xPosition, yPosition), 0);
                 }
                 break;
             case 2:
