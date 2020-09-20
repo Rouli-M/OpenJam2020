@@ -13,7 +13,7 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(1000 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(300 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricObject(xPosition);
@@ -146,7 +146,7 @@ class WorldGenerator : Component, IUpdatable
 
     void generateSkyDecor(float xPosition)
     {
-        int type = Random.NextInt(2);
+        int type = Random.NextInt(3);
         int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
         switch (type)
         {
