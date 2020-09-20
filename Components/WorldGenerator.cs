@@ -132,11 +132,14 @@ class WorldGenerator : Component, IUpdatable
 
     void generateFutureDecor(float xPosition)
     {
-        int type = Random.NextInt(1);
+        int type = Random.NextInt(2);
         switch (type)
         {
             case 0:
-
+                tryToAddComponent("future_maison", new Decor("future_home"), new Vector2(xPosition, 0), 100);
+                break;
+            case 1:
+                tryToAddComponent("panneau futur", new Decor("panneau_future"), new Vector2(xPosition, 0), 100);
                 break;
         }
     }
