@@ -45,6 +45,24 @@ class WorldGenerator : Component, IUpdatable
                         newComponent.Transform.Parent = this.Transform;
                     }
                     break;
+                /*case 0:
+                    yPosition = -62;
+                    if (checkPosition(new Vector2(xPosition, yPosition)))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("fountain").AddComponent<Fountain>();
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+                case 1:
+                    yPosition = - 500 - Random.NextInt(Constants.SKY_HEIGHT);
+                    if (checkPosition(new Vector2(xPosition, yPosition)))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("balloon").AddComponent<Balloon>();
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;*/
             }
         }
 
