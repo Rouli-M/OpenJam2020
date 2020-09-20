@@ -11,7 +11,7 @@ class WorldGenerator : Component, IUpdatable
 
     public void generate(float xPosition)
     {
-        if (Random.NextInt(64) == 0)
+        if (Time.DeltaTime > 0 && Random.NextInt((int)(1/Time.DeltaTime)) == 0)
         {
             int type = Random.NextInt(2);
             int yPosition;
