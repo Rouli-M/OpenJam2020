@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
 using System;
@@ -10,17 +9,17 @@ class Bumper : WorldObject, ITriggerListener
     protected const float minBumpVelocity = 500f;
     protected readonly Vector2 bumpDirection = new Vector2(0, -1);
     protected SpriteAnimator animator;
-    protected SoundEffect bounce_sound;
+    protected SoundEffect bounceSound;
 
     public override void OnAddedToEntity()
     {
         var collider = Entity.AddComponent(new BoxCollider(-110, -10, 220, 80));
         collider.IsTrigger = true;
 
-        SpriteAtlas atlas = Entity.Scene.Content.LoadSpriteAtlas("Content/bundle.atlas");
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
-
-        bounce_sound = Core.Content.Load<SoundEffect>("bounce");
+        animator.AddAnimation("bump", Game.Atlas.GetAnimation("champi"));
+        
+        bounceSound = Core.Content.Load<SoundEffect>("bounce");
 
         base.OnAddedToEntity();
     }
@@ -30,7 +29,7 @@ class Bumper : WorldObject, ITriggerListener
         var player = other.GetComponent<Player>();
         player.Velocity += MathF.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
         
-        bounce_sound.Play();
+        bounceSound.Play();
 
         if (!player.IsThrowing())
         {
@@ -42,6 +41,7 @@ class Bumper : WorldObject, ITriggerListener
             else if (player.DinoCount() == 3) 
                 player.fsm.ChangeState<Flying_3State>();
         }
+
         animator.Play("bump", SpriteAnimator.LoopMode.Once);
     }
 

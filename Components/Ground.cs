@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
 using static Constants;
@@ -15,7 +14,7 @@ public class Ground : Component
         base.OnAddedToEntity();
 
         Entity.AddComponent(new BoxCollider(0, 0, groundWidth, GROUND_HEIGHT));
-        var basee = Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("base")) { LayerDepth = .2f });
+        var basee = Entity.AddComponent(new SpriteRenderer(Game.Atlas.GetSprite("base")) { LayerDepth = .6f });
         basee.LocalOffset = new Vector2(-1205 + DESIGN_WIDTH / 2, -475);
 
         Transform.Position = new Vector2(0, 0);
