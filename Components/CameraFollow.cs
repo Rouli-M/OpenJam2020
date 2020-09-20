@@ -8,7 +8,6 @@ public class CameraFollow : Component, IUpdatable
     Landscape landscape;
     Camera camera;
     
-
     public override void OnAddedToEntity()
     {
         base.OnAddedToEntity();
@@ -21,7 +20,7 @@ public class CameraFollow : Component, IUpdatable
     public void Update()
     {
         offset = player.Velocity;
-        int offset_length = 300;
+        int offset_length = 650;
         if (player.fsm != null) if (player.fsm.CurrentState is NotThrownState || player.fsm.CurrentState is ThrowingState)
             {
                 offset = new Vector2(50, -300);
@@ -30,12 +29,12 @@ public class CameraFollow : Component, IUpdatable
 
         if (offset.Length() > 5) offset.Normalize(); 
         else offset = Vector2.Zero;
-        offset *= -offset_length; offset.X *= 2; if (player.Velocity.Length() < 1000) offset.X *= player.Velocity.Length()/1000;
+        offset *= -offset_length; offset.X *= 4; if (player.Velocity.Length() < 2500f) offset.X *= player.Velocity.Length()/2500f;
         Vector2 newPosition = player.Transform.Position - offset * 0.5f - previous_offset * 0.5f;
 
         float length = player.Velocity.Length();
-        float normalized = Mathf.Clamp01(length / 3000f);
-        camera.RawZoom = Mathf.Lerp(0.8f, .3f, normalized);
+        float normalized = Mathf.Clamp01(length / 2500f);
+        camera.RawZoom = Mathf.Lerp(0.8f, .15f, normalized);
 
         Transform.Position = newPosition * 0.1f + 0.9f * Transform.Position;
 

@@ -1,3 +1,5 @@
+using Nez;
+
 [Scene("Basic Scene", 0)]
 public class BasicScene : Scene
 {
@@ -11,5 +13,6 @@ public class BasicScene : Scene
         CreateEntity("world_generator").AddComponent<WorldGenerator>();
 
         Camera.Entity.AddComponent<CameraFollow>();
+        Camera.Entity.AddComponent<CameraShake>();
     }
 }

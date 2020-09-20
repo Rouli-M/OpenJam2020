@@ -5,8 +5,8 @@ public class Landscape : Component
 {
     Layer[] layers;
 
-    const int SKY_HEIGHT = Constants.DESIGN_HEIGHT * 50;
-    const int TREES_HEIGHT = Constants.DESIGN_HEIGHT * 5;
+    const int SKY_HEIGHT = Constants.DESIGN_HEIGHT * 8;
+    const int TREES_HEIGHT = Constants.DESIGN_HEIGHT * 3;
 
     struct Layer
     {

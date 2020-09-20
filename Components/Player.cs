@@ -130,8 +130,11 @@ public class Player : Component, IUpdatable
                     fsm.ChangeState<Sliding_1State>();
                 if (fsm.CurrentState is Flying_2State)
                     fsm.ChangeState<Sliding_2State>();
-                if (fsm.CurrentState is Flying_3State)
+                if (fsm.CurrentState is Flying_3State state3)
+                {
                     fsm.ChangeState<Sliding_3State>();
+                    Entity.Scene.Camera.GetComponent<CameraShake>().Shake(50, 0.9f, new Vector2(0, 1));
+                }
             }
             else
             {
