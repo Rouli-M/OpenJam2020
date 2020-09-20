@@ -190,6 +190,18 @@
 /processorParam:TextureFormat=Color
 /build:root/hold_space_overlay.png
 
+#begin root/maison.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/maison.png
+
 #begin root/nuage1.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -226,6 +238,18 @@
 /processorParam:TextureFormat=Color
 /build:root/nuage3.png
 
+#begin root/puit.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/puit.png
+
 #begin root/sky.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -261,6 +285,30 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:root/space_to_sky.png
+
+#begin root/tonneau.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/tonneau.png
+
+#begin root/tour.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:root/tour.png
 
 #begin RouliXL.spritefont
 /importer:FontDescriptionImporter
