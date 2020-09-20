@@ -14,7 +14,7 @@ class Balloon : WorldObject, ITriggerListener
         collider.IsTrigger = true;
 
         animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
-        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("balloon") });
+        animator.AddAnimation("idle", new[] { Game.Atlas.GetSprite("mongolfiere") });
 
         bounceSound = Core.Content.Load<SoundEffect>("bounce");
 
