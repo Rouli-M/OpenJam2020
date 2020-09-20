@@ -62,6 +62,39 @@ class WorldGenerator : Component, IUpdatable
                     break;
             }
         }
+
+        if (Random.NextInt(32) == 0)
+        {
+            int type = Random.NextInt(2);
+            int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(Constants.SKY_HEIGHT - Constants.TREES_HEIGHT);
+            switch (type)
+            {
+                case 0:
+                    if (checkPosition(new Vector2(xPosition, yPosition), 450))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("nuage").AddComponent(new Decor("nuage1"));
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+                case 1:
+                    if (checkPosition(new Vector2(xPosition, yPosition), 450))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("nuage").AddComponent(new Decor("nuage2"));
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+                case 2:
+                    if (checkPosition(new Vector2(xPosition, yPosition), 450))
+                    {
+                        var newComponent = Entity.Scene.CreateEntity("nuage").AddComponent(new Decor("nuage3"));
+                        newComponent.Transform.Position = new Vector2(xPosition, yPosition);
+                        newComponent.Transform.Parent = this.Transform;
+                    }
+                    break;
+            }
+        }
     }
 
     private bool checkPosition(Vector2 position, int width = 250)

@@ -5,10 +5,6 @@ public class Landscape : Component
 {
     Layer[] layers;
 
-    const int SPACE_HEIGHT = Constants.DESIGN_HEIGHT * 8;//8
-    const int SKY_HEIGHT = Constants.DESIGN_HEIGHT * 3 + 400;//5
-    const int TREES_HEIGHT = 720 * 2 + 400;//4
-
     struct Layer
     {
         public Transform transform;
@@ -42,7 +38,7 @@ public class Landscape : Component
         entity.Parent = Transform;
         entity.Transform.Position = new Vector2(0, 300);
 
-        var renderer = entity.AddTiledTexture("root/sky", 0.99f, Constants.DESIGN_WIDTH * 100, SKY_HEIGHT);
+        var renderer = entity.AddTiledTexture("root/sky", 0.99f, Constants.DESIGN_WIDTH * 100, Constants.SKY_HEIGHT);
         renderer.OriginNormalized = new Vector2(.5f, 1);
 
         var topRenderer = entity.AddTiledTexture("root/space_to_sky", .99f, Constants.DESIGN_WIDTH * 100);
@@ -57,7 +53,7 @@ public class Landscape : Component
         entity.Parent = Transform;
         entity.Transform.Position = new Vector2(0, 300);
 
-        var renderer = entity.AddTiledTexture("root/space", 1, Constants.DESIGN_WIDTH * 100, SPACE_HEIGHT);
+        var renderer = entity.AddTiledTexture("root/space", 1, Constants.DESIGN_WIDTH * 100, Constants.SPACE_HEIGHT);
         renderer.OriginNormalized = new Vector2(.5f, 1);
         return entity;
     }
@@ -68,7 +64,7 @@ public class Landscape : Component
         entity.Parent = Transform;
         entity.Transform.Position = new Vector2(0, 300);
 
-        var treesRenderer = entity.AddTiledTexture("root/bg1", .9f, Constants.DESIGN_WIDTH * 100, TREES_HEIGHT);
+        var treesRenderer = entity.AddTiledTexture("root/bg1", .9f, Constants.DESIGN_WIDTH * 100, Constants.TREES_HEIGHT);
         treesRenderer.OriginNormalized = new Vector2(.5f, 1);
 
         var topRenderer = entity.AddTiledTexture("root/bg1-top", .8f, Constants.DESIGN_WIDTH * 100);
