@@ -8,7 +8,6 @@ public class CameraFollow : Component, IUpdatable
     Landscape landscape;
     Camera camera;
     
-
     public override void OnAddedToEntity()
     {
         base.OnAddedToEntity();
@@ -21,7 +20,7 @@ public class CameraFollow : Component, IUpdatable
     public void Update()
     {
         offset = player.Velocity;
-        int offset_length = 300;
+        int offset_length = 450;
         if (player.fsm != null) if (player.fsm.CurrentState is NotThrownState || player.fsm.CurrentState is ThrowingState)
             {
                 offset = new Vector2(50, -300);
