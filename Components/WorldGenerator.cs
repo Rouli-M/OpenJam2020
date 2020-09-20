@@ -39,7 +39,7 @@ class WorldGenerator : Component, IUpdatable
                     }
                     break;
                 case 2:
-                    yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
+                    yPosition = -Constants.FOREST_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.FOREST_HEIGHT));
                     if (checkPosition(new Vector2(xPosition, yPosition), 500))
                     {
                         var newComponent = Entity.Scene.CreateEntity("ptero").AddComponent<Pterodactylus>();
