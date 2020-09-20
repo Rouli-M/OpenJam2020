@@ -13,7 +13,7 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(700 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(1000 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricObject(xPosition);
@@ -82,12 +82,16 @@ class WorldGenerator : Component, IUpdatable
 
     void generateFutureObjects(float xPosition)
     {
-        int type = Random.NextInt(1);
+        int type = Random.NextInt(2);
         int yPosition;
         switch (type)
         {
             case 0:
-
+                tryToAddComponent("booster", new Booster(), new Vector2(xPosition, -54));
+                break;
+            case 1:
+                yPosition = 300 - Random.NextInt(1300);
+                tryToAddComponent("tower", new Tower(), new Vector2(xPosition, yPosition), 500);
                 break;
         }
     }
