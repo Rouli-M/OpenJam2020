@@ -20,6 +20,7 @@ public class ThrowingState : State<Player>
             var entity = _context.Entity.Scene.CreateEntity("canon_empty", _context.Transform.Position).AddComponent(new DroppedDino(0));
             entity.Transform.Rotation = _context.Entity.Rotation;
             MediaPlayer.Play(_context.music);
+            MediaPlayer.Volume = 0.6f;
 
             var direction = _context.Throw(1200f, -_context.Entity.Rotation);
             _context.Transform.Position += direction * 600;
