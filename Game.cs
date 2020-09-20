@@ -49,6 +49,8 @@ public class Game : Core
         Content.Load<SoundEffect>("bounce");
         Content.Load<SoundEffect>("hold");
         Content.Load<SoundEffect>("stomp");
+
+        Content.Load<Microsoft.Xna.Framework.Media.Song>("Anttis instrumentals - Back in the background");
         base.LoadContent();
     }
 

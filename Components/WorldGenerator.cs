@@ -13,7 +13,7 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(1000 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(250 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
                 generatePrehistoricObject(xPosition);
@@ -54,11 +54,11 @@ class WorldGenerator : Component, IUpdatable
                 yPosition = 455 - Random.NextInt(1000);
                 if (checkPosition(new Vector2(xPosition, yPosition - 517)))
                 {
-                    tryToAddComponent("tall_bumper", new TallBumper(), new Vector2(xPosition, yPosition), int.MaxValue);
+                    tryToAddComponent("tall_bumper", new TallBumper(), new Vector2(xPosition, yPosition), 0);
                 }
                 break;
             case 2:
-                yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
+                yPosition = -Constants.TREES_HEIGHT + 400 - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
                 tryToAddComponent("ptero", new Pterodactylus(), new Vector2(xPosition, yPosition));
                 break;
         }
@@ -146,7 +146,7 @@ class WorldGenerator : Component, IUpdatable
 
     void generateSkyDecor(float xPosition)
     {
-        int type = Random.NextInt(2);
+        int type = Random.NextInt(3);
         int yPosition = -Constants.TREES_HEIGHT - Random.NextInt(2 * (Constants.SKY_HEIGHT - Constants.TREES_HEIGHT));
         switch (type)
         {

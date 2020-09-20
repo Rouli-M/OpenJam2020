@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using Nez;
 using Nez.AI.FSM;
 using Nez.Particles;
@@ -14,6 +15,7 @@ public class Player : Component, IUpdatable
 
     public Vector2 Velocity;
     Mover mover;
+    public Song music;
 
     public StateMachine<Player> fsm;
     public SpriteAnimator animator;
@@ -75,6 +77,9 @@ public class Player : Component, IUpdatable
         flyingParticles = Entity.AddComponent(new ParticleEmitter(Particles.MakeFlyingParticlesConfig(), false) { LayerDepth = .51f });
         impactParticles = Entity.AddComponent(new ParticleEmitter(Particles.MakeImpatchParticlesConfig(), false) { LayerDepth = .51f });
         impactParticles.LocalOffset = new Vector2(0, 150);
+        
+        music = Core.Content.Load<Song>("Anttis instrumentals - Back in the background");
+        MediaPlayer.Stop();
     }
 
     internal bool IsThrowing()
