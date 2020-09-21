@@ -16,9 +16,8 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         // Don't actually add the renderer since we will manually call it later
         _screenSpaceRenderer = new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer);
         _screenSpaceRenderer.ShouldDebugRender = false;
-
-        SetDesignResolution(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT, SceneResolutionPolicy.BestFit);
-        Screen.SetSize(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT);
+        
+        SetDesignResolution(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT, SceneResolutionPolicy.FixedHeight);
 
         FinalRenderDelegate = this;
 

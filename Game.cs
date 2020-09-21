@@ -38,7 +38,9 @@ public class Game : Core
         Game.PauseOnFocusLost = false;
 
         Atlas = Content.LoadSpriteAtlas("Content/bundle.atlas");
+
         Scene = new DefaultScene();
+        Screen.SetSize(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT);
     }
 
     protected override void LoadContent()
