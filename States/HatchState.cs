@@ -11,6 +11,8 @@ public class HatchState : State<Player>
 
         _context.animator.Play("1-win");
         _context.success.Play();
+        
+        (_context.Entity.Scene as DefaultScene).PlayConfettis();
     }
 
     public override void Update(float deltaTime)

@@ -18,6 +18,11 @@ public class DefaultScene : Scene
         Camera.Entity.AddComponent<CameraShake>();
     }
 
+    public void PlayConfettis()
+    {
+        CreateEntity("confettis").AddComponent<Confettis>();
+    }
+
     public override void Update()
     {
         base.Update();

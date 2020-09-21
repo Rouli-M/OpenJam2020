@@ -41,7 +41,7 @@ public static class Particles
         return config;
     }
 
-    internal static ParticleEmitterConfig MakeImpatchParticlesConfig()
+    public static ParticleEmitterConfig MakeImpatchParticlesConfig()
     {
         var config = new ParticleEmitterConfig();
         config.Sprite = Game.Atlas.GetSprite("circle_particle");
@@ -77,6 +77,49 @@ public static class Particles
         config.Angle = 0;
         // config.RotatePerSecond = 2;
         config.Gravity = new Vector2(0, 1000);
+        return config;
+    }
+
+    public static ParticleEmitterConfig MakeConfettiParticlesConfig(bool left)
+    {
+        var config = new ParticleEmitterConfig();
+        config.Sprite = Game.Atlas.GetSprite("confetti_particle");
+
+        // var alpha = 100;
+        // var color = Color.FromNonPremultiplied(alpha, alpha, alpha, alpha);
+        // config.StartColor = color;
+        // config.FinishColor = color;
+
+        // config.StartColor = Color.White;
+        // config.StartColorVariance = Color.FromNonPremultiplied(0, 0, 0, 0);
+        // config.FinishColorVariance = Color.FromNonPremultiplied(0, 0, 0, 0);
+
+        config.MaxParticles = 10000;
+        config.EmissionRate = 300;
+        config.EmitterType = ParticleEmitterType.Gravity;
+        config.Duration = 2;
+        config.StartParticleSize = 40;
+        // config.StartParticleSizeVariance = 10;
+        config.FinishParticleSize = 10;
+        // config.BlendFuncSource = Microsoft.Xna.Framework.Graphics.Blend.SourceColor;
+        // config.BlendFuncDestination = Microsoft.Xna.Framework.Graphics.Blend.DestinationAlpha;
+        // config.MinRadius = 0;
+        // config.MaxRadius = 100;
+        config.ParticleLifespan = .6f;
+        // config.Speed = 100;
+        // config.RotationStart = 0;
+        // config.RotationEnd = 180;
+        // config.MinRadius = 1000;
+        config.Speed = 1500;
+        config.SpeedVariance = 200;
+        // config.TangentialAcceleration = 100;
+        config.AngleVariance = 30;
+        
+        var angle = -40;
+        config.Angle = left ? angle : 180 - angle;
+
+        // config.RotatePerSecond = 2;
+        config.Gravity = new Vector2(0, 3000);
         return config;
     }
 }

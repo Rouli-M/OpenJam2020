@@ -23,6 +23,7 @@ public class Player : Component, IUpdatable
     public SoundEffect charge_canon_sound, success, throw_sound, hold_sound, stomp_sound;
     public ParticleEmitter flyingParticles;
     public ParticleEmitter impactParticles;
+
     public readonly Point Box3 = new Point(260, 260);
     public readonly Point Box2 = new Point(200, 200);
     public readonly Point Box1 = new Point(100, 100);
@@ -77,7 +78,7 @@ public class Player : Component, IUpdatable
         flyingParticles = Entity.AddComponent(new ParticleEmitter(Particles.MakeFlyingParticlesConfig(), false) { LayerDepth = .51f });
         impactParticles = Entity.AddComponent(new ParticleEmitter(Particles.MakeImpatchParticlesConfig(), false) { LayerDepth = .51f });
         impactParticles.LocalOffset = new Vector2(0, 150);
-        
+
         music = Core.Content.Load<Song>("Anttis instrumentals - Back in the background");
         MediaPlayer.Stop();
     }
@@ -99,7 +100,7 @@ public class Player : Component, IUpdatable
     {
         fsm.Update(Time.DeltaTime);
 
-        if (Input.IsKeyPressed(Keys.Y))
+        if (Input.IsKeyPressed(Keys.K))
             impactParticles.Emit(50);
     }
 
