@@ -111,6 +111,7 @@ public class Player : Component, IUpdatable
         else Transform.Rotation = 0f;
 
         if (fsm.CurrentState is Sliding_1State) groundFriction = 100f;
+        else if (fsm.CurrentState is Sliding_2State) groundFriction = 200f;
         else groundFriction = 250f;
 
         if (mover.Move(Velocity * Time.DeltaTime * Constants.speedMultiplier, out var collisionResult))
