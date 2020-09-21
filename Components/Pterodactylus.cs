@@ -5,6 +5,7 @@ class Pterodactylus : WorldObject, ITriggerListener, IUpdatable
 {
     protected SpriteAnimator animator;
     protected bool isTriggeredByPlayer;
+    protected float boostForce = 300;
 
     public override void OnAddedToEntity()
     {
@@ -41,7 +42,7 @@ class Pterodactylus : WorldObject, ITriggerListener, IUpdatable
     {
         if (isTriggeredByPlayer && Game.player.Velocity.X < 2000)
         {
-            Game.player.Velocity.X += 300 * Time.DeltaTime * Constants.speedMultiplier;
+            Game.player.Velocity.X += boostForce * Time.DeltaTime * Constants.speedMultiplier;
         }
     }
 }
