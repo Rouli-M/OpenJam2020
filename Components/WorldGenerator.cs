@@ -13,16 +13,18 @@ class WorldGenerator : Component, IUpdatable
     {
         if (probaMultiplier <= 0)
             return;
-        if (Random.NextInt((int)(350 / probaMultiplier)) == 0)
+        if (Random.NextInt((int)(250 / probaMultiplier)) == 0)
         {
             if (xPosition < Constants.PREHISTORY_LENGHT_END)
-                generatePrehistoricObject(xPosition);
-            else if (xPosition < Constants.PREHISTORY_LENGHT_END + Constants.MIDDLEAGE_LENGHT)
             {
-                if (Random.NextFloat(1f) < 0.95f) generateMiddleAgeObject(xPosition);
-            } 
-            else
-                generateFutureObjects(xPosition);      
+                if (Random.NextFloat(1f) < 0.60f) generatePrehistoricObject(xPosition);
+            }
+        else if (xPosition < Constants.PREHISTORY_LENGHT_END + Constants.MIDDLEAGE_LENGHT)
+        {
+            if (Random.NextFloat(1f) < 0.90f) generateMiddleAgeObject(xPosition);
+        }
+        else
+            generateFutureObjects(xPosition);      
         }
 
         if (Random.NextInt((int)((300 + 400) / probaMultiplier)) == 0)

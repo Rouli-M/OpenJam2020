@@ -110,8 +110,8 @@ public class Player : Component, IUpdatable
         if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = MathF.Atan2(Velocity.Y, Velocity.X);
         else Transform.Rotation = 0f;
 
-        if (fsm.CurrentState is Sliding_1State) groundFriction = 100f;
-        else if (fsm.CurrentState is Sliding_2State) groundFriction = 200f;
+        if (fsm.CurrentState is Sliding_1State) groundFriction = 110f;
+        else if (fsm.CurrentState is Sliding_2State) groundFriction = 250f;
         else groundFriction = 250f;
 
         if (mover.Move(Velocity * Time.DeltaTime * Constants.speedMultiplier, out var collisionResult))
@@ -171,7 +171,7 @@ public class Player : Component, IUpdatable
     {
         throw_sound.Play();
         var direction = new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
-        this.Velocity = new Vector2(0.55f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
+        this.Velocity = new Vector2(0.45f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
         return direction;
     }
 
