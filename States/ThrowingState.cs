@@ -21,6 +21,7 @@ public class ThrowingState : State<Player>
             entity.Transform.Rotation = _context.Entity.Rotation;
             MediaPlayer.Play(_context.music);
             MediaPlayer.Volume = 0.6f;
+            MediaPlayer.IsRepeating = true;
 
             var direction = _context.Throw(1200f, -_context.Entity.Rotation);
             _context.Transform.Position += direction * 600;
