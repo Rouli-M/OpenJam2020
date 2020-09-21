@@ -16,7 +16,7 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
         // Don't actually add the renderer since we will manually call it later
         _screenSpaceRenderer = new ScreenSpaceRenderer(100, ScreenSpaceRenderLayer);
         _screenSpaceRenderer.ShouldDebugRender = false;
-        
+
         SetDesignResolution(Constants.DESIGN_WIDTH, Constants.DESIGN_HEIGHT, SceneResolutionPolicy.FixedHeight);
 
         FinalRenderDelegate = this;
@@ -103,10 +103,11 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     private void RenderScore()
     {
         var score = $"{Game.Score}m";
-
+        var scale = .4f / Constants.DESIGN_HEIGHT * Screen.Height;
+        
         if (Game.State == GameState.Over)
-            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(750, 30), Color.Black, 0, Vector2.Zero, .4f, SpriteEffects.None, 0);
+            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(750f / Constants.DESIGN_WIDTH * Screen.Width, 30f / Constants.DESIGN_HEIGHT * Screen.Height), Color.Black, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
         else
-            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(10, 5), Color.Black, 0, Vector2.Zero, .4f, SpriteEffects.None, 0);
+            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(10, 5), Color.Black, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
     }
 }
