@@ -170,7 +170,7 @@ public class Player : Component, IUpdatable
     {
         throw_sound.Play();
         var direction = new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
-        this.Velocity = new Vector2(0.35f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
+        this.Velocity = new Vector2(0.55f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
         return direction;
     }
 
