@@ -40,7 +40,7 @@ class Pterodactylus : WorldObject, ITriggerListener, IUpdatable
 
     public void Update()
     {
-        if (isTriggeredByPlayer && Game.player.Velocity.X < 2000)
+        if (isTriggeredByPlayer && Game.player.Velocity.X < 1500)
         {
             Game.player.Velocity.X += boostForce * Time.DeltaTime * Constants.speedMultiplier;
         }

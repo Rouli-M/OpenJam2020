@@ -12,10 +12,10 @@ class Booster : Pterodactylus
         Entity.GetComponent<BoxCollider>().SetSize(300, 100);
 
         Entity.RemoveComponent<SpriteAnimator>();
-        animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .5f });
+        animator = Entity.AddComponent(new SpriteAnimator() { LayerDepth = .6f });
         animator.AddAnimation("idle", Game.Atlas.GetAnimation("boost"));
         animator.Play("idle");
 
-        boostForce = 800;
+        boostForce = 600;
     }
 }

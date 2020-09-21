@@ -25,7 +25,7 @@ class Part
     public Part(Entity entity, float y, Sprite sprite)
     {
         this.entity = entity;
-        renderer = entity.AddComponent(new SpriteRenderer(sprite) { LocalOffset = new Vector2(0, y) });
+        renderer = entity.AddComponent(new SpriteRenderer(sprite) { LocalOffset = new Vector2(0, y), LayerDepth = 0.5f });
         renderer.OriginNormalized = new Vector2(.5f, 1);
 
         var angle = Random.NextAngle();
