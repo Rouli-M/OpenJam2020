@@ -99,9 +99,6 @@ public class Player : Component, IUpdatable
     public void Update()
     {
         fsm.Update(Time.DeltaTime);
-
-        if (Input.IsKeyPressed(Keys.K))
-            impactParticles.Emit(50);
     }
 
     public void PhysicalUpdate()
