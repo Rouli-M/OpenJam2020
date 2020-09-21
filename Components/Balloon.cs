@@ -24,7 +24,7 @@ class Balloon : WorldObject, ITriggerListener
 
         base.OnAddedToEntity();
     }
-    
+
     public void OnTriggerEnter(Collider other, Collider local)
     {
         Vector2 distance = Transform.Position - other.Transform.Position;
@@ -35,7 +35,7 @@ class Balloon : WorldObject, ITriggerListener
         player.Velocity += bounceForce;
         if (player.Velocity.X < minXVelocity)
         {
-            player.Velocity.X = MathF.Max(-player.Velocity.X, minXVelocity);
+            player.Velocity.X = (float)Math.Max(-player.Velocity.X, minXVelocity);
         }
 
         bounceSound.Play();

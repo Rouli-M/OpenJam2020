@@ -28,7 +28,7 @@ class Bumper : WorldObject, ITriggerListener
     public void OnTriggerEnter(Collider other, Collider local)
     {
         var player = other.GetComponent<Player>();
-        player.Velocity += MathF.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
+        player.Velocity += Math.Max(2 * Vector2.Dot(-player.Velocity, bumpDirection), minBumpVelocity) * bumpDirection;
         
         bounceSound.Play();
 

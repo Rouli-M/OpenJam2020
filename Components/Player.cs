@@ -108,7 +108,7 @@ public class Player : Component, IUpdatable
     {
         Velocity.Y += gravity * Time.DeltaTime * Constants.speedMultiplier;
 
-        if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = MathF.Atan2(Velocity.Y, Velocity.X);
+        if (fsm.CurrentState is Flying_2State || fsm.CurrentState is Flying_1State) Transform.Rotation = Mathf.Atan2(Velocity.Y, Velocity.X);
         else Transform.Rotation = 0f;
 
         if (fsm.CurrentState is Sliding_1State) groundFriction = 110f;
@@ -168,10 +168,10 @@ public class Player : Component, IUpdatable
         }
     }
 
-    public Vector2 Throw(float speed, float angle = MathF.PI / 4)
+    public Vector2 Throw(float speed, float angle = (float)Math.PI / 4)
     {
         throw_sound.Play();
-        var direction = new Vector2(MathF.Cos(angle), -MathF.Sin(angle));
+        var direction = new Vector2(Mathf.Cos(angle), -Mathf.Sin(angle));
         this.Velocity = new Vector2(0.45f * this.Velocity.X, -0.35f * this.Velocity.X) + speed * direction;
         return direction;
     }
