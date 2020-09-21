@@ -81,7 +81,16 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
 
     public void OnAddedToScene(Nez.Scene scene) => _scene = scene;
 
-    public void OnSceneBackBufferSizeChanged(int newWidth, int newHeight) => _screenSpaceRenderer.OnSceneBackBufferSizeChanged(newWidth, newHeight);
+    private Vector2 _endScorePosition;
+    private float _scoreScale;
+    private Color _scoreColor = Color.FromNonPremultiplied(0, 0, 0, 190);
+
+    public void OnSceneBackBufferSizeChanged(int newWidth, int newHeight)
+    {
+        _screenSpaceRenderer.OnSceneBackBufferSizeChanged(newWidth, newHeight);
+        _endScorePosition = new Vector2(750f / Constants.DESIGN_WIDTH * Screen.Width, 30f / Constants.DESIGN_HEIGHT * Screen.Height);
+        _scoreScale = .4f / Constants.DESIGN_HEIGHT * Screen.Height;
+    }
 
     public void HandleFinalRender(RenderTarget2D finalRenderTarget, Color letterboxColor, RenderTarget2D source,
                                   Rectangle finalRenderDestinationRect, SamplerState samplerState)
@@ -103,11 +112,10 @@ public abstract class Scene : Nez.Scene, IFinalRenderDelegate
     private void RenderScore()
     {
         var score = $"{Game.Score}m";
-        var scale = .4f / Constants.DESIGN_HEIGHT * Screen.Height;
-        
+
         if (Game.State == GameState.Over)
-            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(750f / Constants.DESIGN_WIDTH * Screen.Width, 30f / Constants.DESIGN_HEIGHT * Screen.Height), Color.Black, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+            Graphics.Instance.Batcher.DrawString(rouliFont, score, _endScorePosition, _scoreColor, 0, Vector2.Zero, _scoreScale, SpriteEffects.None, 0);
         else
-            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(10, 5), Color.Black, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+            Graphics.Instance.Batcher.DrawString(rouliFont, score, new Vector2(10, 5), _scoreColor, 0, Vector2.Zero, _scoreScale, SpriteEffects.None, 0);
     }
 }
